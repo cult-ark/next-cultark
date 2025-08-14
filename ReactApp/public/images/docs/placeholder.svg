@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title>PDF Placeholder</title>
+  <desc>Generic placeholder image for a PDF document thumbnail</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3f4f6"/>
+      <stop offset="100%" stop-color="#e5e7eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <rect x="180" y="120" width="440" height="360" rx="8" ry="8" fill="#ffffff" stroke="#d1d5db"/>
+  <rect x="210" y="150" width="180" height="14" rx="3" fill="#d1d5db"/>
+  <rect x="210" y="176" width="300" height="12" rx="3" fill="#e5e7eb"/>
+  <rect x="210" y="200" width="300" height="12" rx="3" fill="#e5e7eb"/>
+  <rect x="210" y="224" width="260" height="12" rx="3" fill="#e5e7eb"/>
+  <g opacity="0.8">
+    <rect x="210" y="270" width="380" height="180" fill="#f3f4f6" stroke="#e5e7eb"/>
+    <path d="M210 420 L350 330 L430 385 L590 320 L590 450 L210 450 Z" fill="#e5e7eb"/>
+  </g>
+  <rect x="210" y="468" width="120" height="20" rx="4" fill="#d1d5db"/>
+</svg>

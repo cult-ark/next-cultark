@@ -1,0 +1,70 @@
+[
+  {
+    "title": "SEO Services",
+    "key_points": [
+      "Keyword Research & Analysis",
+      "On-Page SEO",
+      "Technical SEO",
+      "Content Creation & Optimization",
+      "Link Building",
+      "Local SEO",
+      "SEO Auditing",
+      "Corporate Analysis",
+      "Consumer Analysis"
+    ],
+    "img": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Performance Marketing",
+    "key_points": [
+      "Marketing Strategy",
+      "Pay-Per-Click (PPC)",
+      "Native Ads",
+      "Progressive Ads",
+      "Social Media Marketing",
+      "Mobile Marketing",
+      "Consumer Insights",
+      "Gamified Marketing"
+    ],
+    "img": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Media Productions",
+    "key_points": [
+      "Photography",
+      "Videography",
+      "Post-Production Services",
+      "Media Strategy",
+      "Interactive Videos"
+    ],
+    "img": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Design & Production",
+    "key_points": [
+      "Brand Strategy",
+      "Visual Branding",
+      "Activation Branding",
+      "Social Media Designs",
+      "Media/Graphic Art Direction",
+      "Motion Design",
+      "3D Design",
+      "Fully Fledged Production Services"
+    ],
+    "img": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Digital Products",
+    "key_points": [
+      "E-Commerce Websites/Web-apps",
+      "UX Research",
+      "UX Writing",
+      "UX Design",
+      "UI Design",
+      "Development",
+      "Validation & Testing",
+      "Post-Launch Support"
+    ],
+    "img": "https://placehold.co/600x400"
+  }
+]
