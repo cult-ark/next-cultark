@@ -28,38 +28,40 @@ const Services = () => {
         if (services) setSelectedService(services[0]);
     }, [services]);
     return (
-        <div className='relative my-10 lg:mt-28'>
-
-            <div className='xl:absolute left-0  top-0'>
-                <div className='bg-cultark-blue uppercase text-cultark-white rounded-r-xl xl:px-4 py-4 xl:py-6 px-6 xl:text-vertical-lr w-2/3 xl:w-auto text-center mb-5 xl:mb-0'>
-                    <p className='xl:rotate-180'>what we do</p>
+        <div className='my-10 lg:mt-28'>
+            <div className='xl:flex xl:items-start xl:gap-6'>
+                <div className='xl:flex-shrink-0'>
+                    <div className='bg-cultark-blue uppercase text-cultark-white rounded-r-xl xl:px-4 py-4 xl:py-6 px-6 xl:text-vertical-lr w-2/3 xl:w-auto text-center mb-5 xl:mb-8'>
+                        <p className='xl:rotate-180'>what we do</p>
+                    </div>
                 </div>
-            </div>
-            <div className='px-6 max-w-[110rem] mx-auto z-10'>
-                <h2 className='text-h2 font-light text-width-max'>
-                    The Magic Within the Cult
-                </h2>
-                <p className='text-16 lg:w-3/5 font-light'>
-                    We don't follow trends—we shape them. Every strategy, every campaign,
-                    and every creative piece we build is designed to leave an impact. If
-                    it doesn't drive results, we don't do it.
-                </p>
 
-                <ServiceDesktop
-                    services={services || []}
-                    isLoading={isLoading}
-                    selectedService={selectedService}
-                    setSelectedService={setSelectedService}
-                    buttonsHeight={buttonsHeight + 'px'}
-                />
+                <div className='px-6 max-w-[110rem] mx-auto xl:flex-1 xl:px-0 xl:mx-0'>
+                    <h2 className='text-h2 font-light text-width-max'>
+                        The Magic Within the Cult
+                    </h2>
+                    <p className='text-16 lg:w-3/5 font-light'>
+                        We don't follow trends—we shape them. Every strategy, every campaign,
+                        and every creative piece we build is designed to leave an impact. If
+                        it doesn't drive results, we don't do it.
+                    </p>
 
-                <ServicesMobile
-                    services={services || []}
-                    isLoading={isLoading}
-                    selectedService={selectedService}
-                    setSelectedService={setSelectedService}
-                    buttonsHeight={buttonsHeight + 'px'}
-                />
+                    <ServiceDesktop
+                        services={services || []}
+                        isLoading={isLoading}
+                        selectedService={selectedService}
+                        setSelectedService={setSelectedService}
+                        buttonsHeight={buttonsHeight + 'px'}
+                    />
+
+                    <ServicesMobile
+                        services={services || []}
+                        isLoading={isLoading}
+                        selectedService={selectedService}
+                        setSelectedService={setSelectedService}
+                        buttonsHeight={buttonsHeight + 'px'}
+                    />
+                </div>
             </div>
         </div>
     );
