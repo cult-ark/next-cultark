@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { pdfDocs } from '@/data/pdfs';
 
 export default function CaseStudiesPageClient() {
@@ -12,11 +13,13 @@ export default function CaseStudiesPageClient() {
                     const thumb = `/images/docs/${doc.slug}.jpg`;
                     return (
                         <div key={doc.slug} className="rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col">
-                            <div className="aspect-[4/3] bg-gray-100 overflow-hidden">
-                                <img
+                            <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                                <Image
                                     src={thumb}
                                     alt={`${doc.name} thumbnail`}
-                                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-200"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-200"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                                     onError={(e) => {
                                         (e.currentTarget as HTMLImageElement).src = '/images/docs/placeholder.svg';
                                     }}

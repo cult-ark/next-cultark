@@ -2,7 +2,8 @@
 
 // import { FolderOpen, Heart } from 'lucide-react';
 import { Heart } from 'lucide-react';
-const google_partner = 'images/assets/cultark-PremierPartner-RGB.png'
+import Image from 'next/image';
+const google_partner = '/images/assets/cultark-PremierPartner-RGB.png'
 const meta_partner = '/images/assets/cultark-Meta-Badge.jpg';
 const tiktok = '/images/assets/cultark-tiktok.jpg';
 import { cx } from 'class-variance-authority';
@@ -16,15 +17,22 @@ const TrustedBy = () => {
             <h2 className='text-h1-2 !text-center'>Trusted By</h2>
             <div className='w-full flex items-center justify-evenly gap-5 flex-wrap no-scrollbar pb-10'>
                 {[google_partner, meta_partner, tiktok].map((partner, index) => (
-                    <img
-                        key={index}
-                        src={partner}
-                        alt=''
-                        className={cx(
-                            'flex-shrink h-28 lg:h-36',
-                            partner == tiktok && 'border rounded-lg border-gray-600'
-                        )}
-                    />
+                    <div key={index} className={cx(
+                        'relative flex-shrink-0 h-28 lg:h-36',
+                        partner == tiktok && 'border rounded-lg border-gray-600'
+                    )}>
+                        <Image
+                            src={partner}
+                            alt={`Partner ${index + 1}`}
+                            width={200}
+                            height={144}
+                            className={cx(
+                                'h-28 lg:h-36 w-auto object-contain',
+                                partner == tiktok && 'rounded-lg'
+                            )}
+                            sizes="(max-width: 1024px) 112px, 144px"
+                        />
+                    </div>
                 ))}
             </div>
             <div className='flex lg:flex-row flex-col items-center justify-center gap-5'>

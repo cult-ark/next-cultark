@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { getBlogPosts } from '@/services/blog';
-import { truncate } from 'lodash';
+import { truncate } from '@/utils/text';
 import { FaArrowRight } from 'react-icons/fa6';
 import { useRouter } from 'next/navigation';
 

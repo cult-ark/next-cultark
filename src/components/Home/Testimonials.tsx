@@ -1,6 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 const profile_pic = '/images/profile-pic.png';
 import axios from 'axios';
 
@@ -33,7 +34,15 @@ const Testimonials = () => {
                             key={testimonial.slug}
                             className='first:ml-[90vw] sm:first:ml-[90vw] xl:first:ml-[30vw]  last:mr-10 md:min-h-[50%] xl:min-h-[40%] h-fit bg-white/40 rounded-2xl backdrop-blur-md lg:w-[500px] w-[80%] flex flex-col justify-between p-8 shrink-0'
                         >
-                            <img src={testimonial.acf.logo} alt='' className='w-fit' />
+                            <div className='relative w-32 h-12'>
+                                <Image
+                                    src={testimonial.acf.logo}
+                                    alt={`${testimonial.acf.author_name} company logo`}
+                                    fill
+                                    className='object-contain object-left'
+                                    sizes="128px"
+                                />
+                            </div>
                             <div>
                                 <p className='md:text-h3 font-semibold'>
                                     {testimonial.title.rendered}

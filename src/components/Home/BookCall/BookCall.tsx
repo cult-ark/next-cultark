@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, Suspense } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import scrollToElement from 'scroll-to-element';
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import BookCallModal from './BookCallModal';
+
+// Dynamically import BookCallModal to reduce initial bundle size
+const BookCallModal = lazy(() => import('./BookCallModal'));
 import { Calendar } from 'lucide-react';
 
 const BookCallContent = () => {
@@ -57,7 +58,9 @@ const BookCallContent = () => {
                     </div>
                 </div>
 
-                <BookCallModal open={isModalOpen} setOpen={setIsModalOpen} />
+                <Suspense fallback={null}>
+                    <BookCallModal open={isModalOpen} setOpen={setIsModalOpen} />
+                </Suspense>
             </div>
         </div>
     );

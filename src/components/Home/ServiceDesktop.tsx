@@ -5,7 +5,7 @@ import { formatToTwoDigits } from '@/utils/functions';
 import { FaArrowRight } from 'react-icons/fa6';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { truncate } from 'lodash';
+import { truncate } from '@/utils/text';
 import { cx } from 'class-variance-authority';
 
 export interface Props {

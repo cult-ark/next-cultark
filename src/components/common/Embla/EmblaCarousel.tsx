@@ -2,6 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
+import Image from 'next/image';
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -59,11 +60,13 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 <div className='embla__container bg-red-600'>
                     {(clients as any[])?.map((m, index) => (
                         <div className='embla__slide' key={index}>
-                            <div className='embla__slide__number'>
-                                <img
+                            <div className='embla__slide__number relative'>
+                                <Image
                                     src={`${m}`}
                                     alt={`Client ${index + 1}`}
-                                    className='p-5 px-8 w-full h-full object-contain bg-white'
+                                    fill
+                                    className='p-5 px-8 object-contain bg-white'
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                             </div>
                         </div>

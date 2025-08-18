@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { debounce } from 'lodash';
+import { debounce } from '@/utils/text';
 import { Search } from 'lucide-react';
 import { fetchProjects } from '@/services/projects';
 import { useState } from 'react';

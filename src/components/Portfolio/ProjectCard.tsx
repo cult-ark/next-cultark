@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProjectType } from '@/types/project.type';
-import { truncate } from 'lodash';
+import { truncate } from '@/utils/text';
 import Tags from './Tags';
 
 const ProjectCard = ({ project }: { project: ProjectType }) => {

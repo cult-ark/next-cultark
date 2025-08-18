@@ -1,5 +1,6 @@
 // Carousel.tsx
 import React from 'react';
+import Image from 'next/image';
 
 interface CarouselProps {
     items: string[]; // e.g., image URLs or text
@@ -10,12 +11,15 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
         <div className='w-full overflow-hidden relative'>
             <div className='flex animate-scroll whitespace-nowrap'>
                 {items.map((item, index) => (
-                    <img
-                        key={index}
-                        src={item}
-                        alt={`Client ${index + 1}`}
-                        className='flex-shrink-0 object-contain w-80 md:w-96 bg-white m-2 p-3 rounded flex items-center justify-center'
-                    />
+                    <div key={index} className='flex-shrink-0 w-80 md:w-96 bg-white m-2 p-3 rounded flex items-center justify-center relative h-24'>
+                        <Image
+                            src={item}
+                            alt={`Client ${index + 1}`}
+                            fill
+                            className='object-contain'
+                            sizes="(max-width: 768px) 320px, 384px"
+                        />
+                    </div>
                 ))}
             </div>
         </div>

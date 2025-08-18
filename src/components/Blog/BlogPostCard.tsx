@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { BlogPost } from '@/types/blog.type';
-import { truncate } from 'lodash';
+import { truncate } from '@/utils/text';
 import ShareBox from './ShareBox';
 
 const BlogPostCard = ({ post }: { post: BlogPost }) => {

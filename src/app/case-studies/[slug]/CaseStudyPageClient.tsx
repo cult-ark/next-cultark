@@ -3,21 +3,15 @@
 import Link from 'next/link';
 import Script from 'next/script';
 import { PdfDoc } from '@/data/pdfs';
-import { Viewer, Worker } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { generateCaseStudyStructuredData } from '@/lib/structured-data';
-
-// Styles for the viewer and default layout controls
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import DynamicPDFViewer from '@/components/common/DynamicPDFViewer';
 
 type Props = {
     doc: PdfDoc;
 };
 
 export default function CaseStudyPageClient({ doc }: Props) {
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
     // Generate structured data for the case study
     const structuredData = generateCaseStudyStructuredData({
@@ -62,14 +56,10 @@ export default function CaseStudyPageClient({ doc }: Props) {
                 {/* PDF Viewer Section */}
                 <div className="flex-1 bg-gray-50 overflow-hidden">
                     <ErrorBoundary>
-                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                            <div className="h-[calc(100vh-220px)] lg:h-[calc(100vh-200px)] bg-white border border-gray-200 shadow-sm">
-                                <Viewer
-                                    fileUrl={doc.fileUrl}
-                                    plugins={[defaultLayoutPluginInstance]}
-                                />
-                            </div>
-                        </Worker>
+                        <DynamicPDFViewer
+                            pdfUrl={doc.fileUrl}
+                            className="h-[calc(100vh-220px)] lg:h-[calc(100vh-200px)] bg-white border border-gray-200 shadow-sm"
+                        />
                     </ErrorBoundary>
                 </div>
             </div>

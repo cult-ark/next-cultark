@@ -6,13 +6,8 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import LoadingReport from '@/components/Report/LoadingReport';
 import Link from 'next/link';
 import { AxiosError } from 'axios';
-import { Viewer, Worker } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-
-// Styles for the viewer and default layout controls
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import DynamicPDFViewer from '@/components/common/DynamicPDFViewer';
 
 const PDF_NAME = 'AiReport.pdf';
 
@@ -22,7 +17,7 @@ const ReportPageClient = () => {
     const [showShareOptions, setShowShareOptions] = useState(false);
     const shareMenuRef = useRef<HTMLDivElement>(null);
 
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+
 
     // Handle click outside of share menu to close it
     useEffect(() => {
@@ -205,14 +200,10 @@ const ReportPageClient = () => {
                     {/* PDF Viewer Section */}
                     <div className="bg-gray-50">
                         <ErrorBoundary>
-                            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                                <div className="h-[70vh] md:h-[75vh] lg:h-[80vh] bg-white border-t border-gray-200">
-                                    <Viewer
-                                        fileUrl="/docs/AiReport.pdf"
-                                        plugins={[defaultLayoutPluginInstance]}
-                                    />
-                                </div>
-                            </Worker>
+                            <DynamicPDFViewer
+                                pdfUrl="/docs/AiReport.pdf"
+                                className="h-[70vh] md:h-[75vh] lg:h-[80vh] bg-white border-t border-gray-200"
+                            />
                         </ErrorBoundary>
                     </div>
                 </div>
