@@ -10,13 +10,13 @@ export const metadata: Metadata = {
         description: 'Comprehensive suite of performance marketing services including SEO, media production, and digital transformation solutions.',
         images: [
             {
-                url: 'https://cultark.com/images/og-services.jpg',
+                url: 'https://backup.cultark.net/images/og-services.jpg',
                 width: 1200,
                 height: 630,
                 alt: 'CULTARK Services',
             },
         ],
-        url: 'https://cultark.com/services',
+        url: 'https://backup.cultark.net/services',
         type: 'website',
         siteName: 'CULTARK',
     },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Our Services - CULTARK',
         description: 'Explore our comprehensive suite of performance marketing services including SEO, media production, and digital transformation.',
-        images: ['https://cultark.com/images/og-services.jpg'],
+        images: ['https://backup.cultark.net/images/og-services.jpg'],
         site: '@cultark',
     },
 };

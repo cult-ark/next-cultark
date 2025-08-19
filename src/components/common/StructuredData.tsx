@@ -12,14 +12,14 @@ export default function StructuredData() {
     "name": "CULTARK",
     "alternateName": "CULTARK Agency",
     "description": "Leading performance marketing agency specializing in SEO, media production, design & production, and digital products.",
-    "url": "https://cultark.com",
+    "url": "https://backup.cultark.net",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://cultark.com/images/logos/Blue-2048x396.png",
+      "url": "https://backup.cultark.net/images/logos/Blue-2048x396.png",
       "width": 2048,
       "height": 396
     },
-    "image": "https://cultark.com/images/og-home.jpg",
+    "image": "https://backup.cultark.net/images/og-home.jpg",
     "sameAs": [
       "https://twitter.com/cultark",
       "https://www.linkedin.com/company/cultark",
@@ -100,7 +100,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "CULTARK",
-    "url": "https://cultark.com",
+    "url": "https://backup.cultark.net",
     "description": "Leading performance marketing agency specializing in SEO, media production, and digital transformation.",
     "publisher": {
       "@type": "Organization",
@@ -110,7 +110,7 @@ export default function StructuredData() {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://cultark.com/search?q={search_term_string}"
+        "urlTemplate": "https://backup.cultark.net/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }
@@ -121,7 +121,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "CULTARK Performance Marketing Agency",
-    "image": "https://cultark.com/images/og-home.jpg",
+    "image": "https://backup.cultark.net/images/og-home.jpg",
     "description": "Leading performance marketing agency specializing in SEO, media production, design & production, and digital products.",
     "address": {
       "@type": "PostalAddress",
@@ -134,7 +134,7 @@ export default function StructuredData() {
       "latitude": 24.7136,
       "longitude": 46.6753
     },
-    "url": "https://cultark.com",
+    "url": "https://backup.cultark.net",
     "telephone": "+966-XX-XXX-XXXX",
     "email": "hello@cultark.com",
     "priceRange": "$$",

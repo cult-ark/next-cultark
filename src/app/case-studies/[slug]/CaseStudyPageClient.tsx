@@ -17,7 +17,7 @@ export default function CaseStudyPageClient({ doc }: Props) {
     const structuredData = generateCaseStudyStructuredData({
         name: doc.name,
         description: doc.description,
-        url: `https://cultark.com/case-studies/${doc.slug}`,
+        url: `https://backup.cultark.net/case-studies/${doc.slug}`,
         datePublished: '2025-01-01T00:00:00Z',
         author: 'CULTARK Research Team'
     });

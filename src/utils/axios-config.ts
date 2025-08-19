@@ -4,7 +4,7 @@ import axios, { AxiosInstance, AxiosError, AxiosRequestConfig } from 'axios';
 // Create axios instance with proper configuration
 const createAxiosInstance = (): AxiosInstance => {
   const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://cultark.com',
+    baseURL: process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net',
     timeout: 10000, // 10 seconds timeout
     headers: {
       'Content-Type': 'application/json',

@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     description: 'Leading performance marketing agency specializing in SEO, media production, and digital transformation. Transform your business with data-driven strategies.',
     images: [
       {
-        url: 'https://cultark.com/images/og-home.jpg',
+        url: 'https://backup.cultark.net/images/og-home.jpg',
         width: 1200,
         height: 630,
         alt: 'CULTARK - Performance Marketing Agency',
       },
     ],
-    url: 'https://cultark.com',
+    url: 'https://backup.cultark.net',
     type: 'website',
     siteName: 'CULTARK',
   },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'CULTARK',
     description: 'Leading performance marketing agency specializing in SEO, media production, and digital transformation.',
-    images: ['https://cultark.com/images/og-home.jpg'],
+    images: ['https://backup.cultark.net/images/og-home.jpg'],
     site: '@cultark',
   },
 }

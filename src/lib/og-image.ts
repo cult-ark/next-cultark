@@ -4,7 +4,7 @@ export function generateOGImageUrl(params: {
     type?: 'blog' | 'service' | 'project' | 'case-study' | 'default';
 }): string {
     const baseUrl = process.env.NODE_ENV === 'production'
-        ? 'https://cultark.com'
+        ? 'https://backup.cultark.net'
         : 'http://localhost:3000';
 
     const searchParams = new URLSearchParams({
@@ -18,7 +18,7 @@ export function generateOGImageUrl(params: {
 
 export function getStaticOGImage(type: 'home' | 'services' | 'portfolio' | 'blog' | 'careers' | 'report' | 'case-studies'): string {
     const baseUrl = process.env.NODE_ENV === 'production'
-        ? 'https://cultark.com'
+        ? 'https://backup.cultark.net'
         : 'http://localhost:3000';
 
     return `${baseUrl}/images/og-${type}.jpg`;

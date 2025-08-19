@@ -45,7 +45,7 @@ const BlogPostClient = ({ slug }: BlogPostClientProps) => {
         publishedDate: post.date,
         modifiedDate: post.date,
         image: post.acf.thumbnail || post.featured_image,
-        url: `https://cultark.com/blog/${slug}`,
+        url: `https://backup.cultark.net/blog/${slug}`,
         tags: post.acf.tag?.map(tag => tag.name) || []
     }) : null;
 

@@ -9,7 +9,7 @@ export async function GET(
         const searchParams = request.nextUrl.searchParams;
 
         // Construct the WordPress API URL
-        const wpUrl = new URL(`https://cultark.com/wp-json/wp/v2/${path.join('/')}`);
+        const wpUrl = new URL(`https://backup.cultark.net/wp-json/wp/v2/${path.join('/')}`);
 
         // Forward all query parameters
         searchParams.forEach((value, key) => {

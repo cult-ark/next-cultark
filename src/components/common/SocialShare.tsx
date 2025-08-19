@@ -14,7 +14,7 @@ export default function SocialShare({ url, title, description, className = '' }:
     const [copied, setCopied] = useState(false);
     const [showShare, setShowShare] = useState(false);
 
-    const fullUrl = url.startsWith('http') ? url : `https://cultark.com${url}`;
+    const fullUrl = url.startsWith('http') ? url : `https://backup.cultark.net${url}`;
     const shareText = description || title;
 
     const shareLinks = {

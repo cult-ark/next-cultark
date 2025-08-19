@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://cultark.com"),
+  metadataBase: new URL("https://backup.cultark.net"),
   openGraph: {
     title: "CULTARK - Performance Marketing Agency",
     description: "Leading performance marketing agency specializing in SEO, media production, and digital transformation. Transform your business with data-driven strategies.",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         alt: "CULTARK - Performance Marketing Agency",
       }
     ],
-    url: "https://cultark.com",
+    url: "https://backup.cultark.net",
     type: "website",
     siteName: "CULTARK",
     locale: "en_SA",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://cultark.com",
+    canonical: "https://backup.cultark.net",
   },
   verification: {
     google: "your-google-verification-code",

@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
                         alt: service.title.rendered,
                     },
                 ] : [],
-                url: `https://cultark.com/services/${slug}`,
+                url: `https://backup.cultark.net/services/${slug}`,
                 type: 'website',
                 siteName: 'CULTARK',
             },

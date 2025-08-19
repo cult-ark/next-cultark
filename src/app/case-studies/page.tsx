@@ -10,13 +10,13 @@ export const metadata: Metadata = {
         description: 'Explore our comprehensive collection of case studies and industry reports including AI implementations, campaign analyses, and digital transformation strategies.',
         images: [
             {
-                url: 'https://cultark.com/images/og-case-studies.jpg',
+                url: 'https://backup.cultark.net/images/og-case-studies.jpg',
                 width: 1200,
                 height: 630,
                 alt: 'CULTARK Case Studies & Reports',
             },
         ],
-        url: 'https://cultark.com/case-studies',
+        url: 'https://backup.cultark.net/case-studies',
         type: 'website',
         siteName: 'CULTARK',
     },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Case Studies & Reports - CULTARK',
         description: 'Explore our comprehensive collection of case studies and industry reports. Download detailed analyses and digital transformation strategies.',
-        images: ['https://cultark.com/images/og-case-studies.jpg'],
+        images: ['https://backup.cultark.net/images/og-case-studies.jpg'],
         site: '@cultark',
     },
 };

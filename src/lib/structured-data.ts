@@ -46,14 +46,14 @@ export function generateBlogPostStructuredData(data: BlogPostStructuredData) {
     "author": {
       "@type": "Organization",
       "name": data.author,
-      "url": "https://cultark.com"
+      "url": "https://backup.cultark.net"
     },
     "publisher": {
       "@type": "Organization",
       "name": "CULTARK",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://cultark.com/images/logos/Blue-2048x396.png",
+        "url": "https://backup.cultark.net/images/logos/Blue-2048x396.png",
         "width": 2048,
         "height": 396
       }
@@ -81,7 +81,7 @@ export function generateServiceStructuredData(data: ServiceStructuredData) {
     "provider": {
       "@type": "Organization",
       "name": data.provider,
-      "url": "https://cultark.com"
+      "url": "https://backup.cultark.net"
     },
     "areaServed": {
       "@type": "Country",
@@ -118,7 +118,7 @@ export function generateProjectStructuredData(data: ProjectStructuredData) {
     "creator": {
       "@type": "Organization",
       "name": data.creator,
-      "url": "https://cultark.com"
+      "url": "https://backup.cultark.net"
     },
     "keywords": data.keywords?.join(", "),
     "genre": "Digital Marketing Project",
@@ -143,14 +143,14 @@ export function generateCaseStudyStructuredData(data: {
     "author": {
       "@type": "Organization",
       "name": data.author,
-      "url": "https://cultark.com"
+      "url": "https://backup.cultark.net"
     },
     "publisher": {
       "@type": "Organization",
       "name": "CULTARK",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://cultark.com/images/logos/Blue-2048x396.png",
+        "url": "https://backup.cultark.net/images/logos/Blue-2048x396.png",
         "width": 2048,
         "height": 396
       }
@@ -168,7 +168,7 @@ export function generateBreadcrumbStructuredData(items: Array<{ name: string; ur
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": item.url ? `https://cultark.com${item.url}` : undefined
+      "item": item.url ? `https://backup.cultark.net${item.url}` : undefined
     }))
   };
 }

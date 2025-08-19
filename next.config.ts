@@ -36,6 +36,12 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
       {
+        protocol: 'https',
+        hostname: 'backup.cultark.net',
+        port: '',
+        pathname: '/**',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '3000',
@@ -62,7 +68,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/wp/:path*',
-        destination: 'https://cultark.com/wp-json/wp/v2/:path*',
+        destination: 'https://backup.cultark.net/wp-json/wp/v2/:path*',
       },
     ];
   },
