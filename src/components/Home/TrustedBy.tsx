@@ -8,7 +8,6 @@ const meta_partner = '/images/assets/cultark-Meta-Badge.jpg';
 const tiktok = '/images/assets/cultark-tiktok.jpg';
 import { cx } from 'class-variance-authority';
 import scrollToElement from 'scroll-to-element';
-// import { Link } from 'react-router-dom';
 
 const TrustedBy = () => {
     return (

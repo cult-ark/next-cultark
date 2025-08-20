@@ -89,6 +89,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <StructuredData />
+        {/* Preload critical resources */}
+        <link rel="preload" href="/images/cultark-logo.png" as="image" type="image/png" />
+        <link rel="preload" href="/images/hero-image.jpg" as="image" type="image/jpeg" />
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//backup.cultark.net" />
+        <link rel="dns-prefetch" href="//calendar.google.com" />
       </head>
       <body
         className={`${archivo.variable} ${manrope.variable} antialiased font-archivo text-cultark-gray overflow-x-hidden`}

@@ -17,7 +17,7 @@ export const pdfDocs: PdfDoc[] = [
         slug: 'auc',
         name: 'AUC Case study',
         description: 'Overview of CultArk services, team and portfolio.',
-        fileUrl: '/docs/auc_case_study.pdf', // TODO: add this file to public/docs/
+        fileUrl: '/docs/auc_case_study.pdf',
     },
     {
         slug: 'cfa',

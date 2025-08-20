@@ -60,7 +60,7 @@ const nextConfig: NextConfig = {
 
   // Experimental features for performance
   experimental: {
-    optimizePackageImports: ['lucide-react', 'react-icons'],
+    optimizePackageImports: ['lucide-react', 'react-icons', '@tanstack/react-query'],
   },
 
   // Proxy configuration for WordPress API to resolve CORS issues
