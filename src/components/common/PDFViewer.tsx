@@ -16,7 +16,7 @@ const PDFViewer = ({ pdfUrl, className }: PDFViewerProps) => {
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
     return (
-        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+        <Worker workerUrl="/js/pdf.worker.min.js">
             <div className={className}>
                 <Viewer
                     fileUrl={pdfUrl}

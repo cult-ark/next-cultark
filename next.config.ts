@@ -5,6 +5,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const nextConfig: NextConfig = {
+  // Enable static export
+  output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
+
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
@@ -26,8 +31,9 @@ const nextConfig: NextConfig = {
     return config;
   },
 
-  // Image optimization
+  // Image optimization (disabled for static export)
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -48,14 +54,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    unoptimized: false,
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   // Experimental features for performance
@@ -63,15 +62,8 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', 'react-icons', '@tanstack/react-query'],
   },
 
-  // Proxy configuration for WordPress API to resolve CORS issues
-  async rewrites() {
-    return [
-      {
-        source: '/api/wp/:path*',
-        destination: 'https://backup.cultark.net/wp-json/wp/v2/:path*',
-      },
-    ];
-  },
+  // Note: API routes and rewrites are not supported in static export
+  // All API calls will need to be made directly to external services
 };
 
 export default withBundleAnalyzer(nextConfig);

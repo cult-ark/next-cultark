@@ -4,9 +4,15 @@ import { ProjectType } from '../types/project.type';
 const projectFormat =
     'acf_format=standard&_fields=id,title,slug,acf.summary,acf.content,acf.large_image,acf.thumbnail,acf.tag';
 
+const getProjectsApiUrl = () => {
+    const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
+    return `${baseUrl}/wp-json/wp/v2/projects?${projectFormat}`;
+};
+
 export const fetchProjects = async (query?: string): Promise<ProjectType[]> => {
     try {
-        const res = await axios(`/api/wp/projects?${projectFormat}&${query !== undefined ? `search=${query}` : ''}`);
+        const url = getProjectsApiUrl() + (query ? `&search=${query}` : '');
+        const res = await axios(url);
 
         if (!res.data || !Array.isArray(res.data)) {
             console.warn('Invalid projects response format');
@@ -27,7 +33,8 @@ export const fetchProject = async (slug?: string): Promise<ProjectType | null> =
             return null;
         }
 
-        const res = await axios(`/api/wp/projects?slug=${slug}&${projectFormat}`);
+        const url = getProjectsApiUrl() + `&slug=${slug}`;
+        const res = await axios(url);
 
         if (!res.data || !Array.isArray(res.data) || res.data.length === 0) {
             console.warn(`Project not found for slug: ${slug}`);

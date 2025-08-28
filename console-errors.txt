@@ -1,0 +1,128 @@
+(index):1 Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline'". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+964-088dee5a185be522.js:1 TypeError: e.map is not a function
+    at n (page-a3073eaf97ebce12.js:1:16675)
+    at l9 (4bd1b696-cf72ae8a39fa05aa.js:1:51101)
+    at oT (4bd1b696-cf72ae8a39fa05aa.js:1:70685)
+    at oW (4bd1b696-cf72ae8a39fa05aa.js:1:81785)
+    at ib (4bd1b696-cf72ae8a39fa05aa.js:1:114384)
+    at 4bd1b696-cf72ae8a39fa05aa.js:1:114229
+    at iv (4bd1b696-cf72ae8a39fa05aa.js:1:114237)
+    at io (4bd1b696-cf72ae8a39fa05aa.js:1:111320)
+    at iX (4bd1b696-cf72ae8a39fa05aa.js:1:132757)
+    at iB (4bd1b696-cf72ae8a39fa05aa.js:1:130968)
+s @ 964-088dee5a185be522.js:1
+error-bb3d50f136f8065e.js:1 Global error: TypeError: e.map is not a function
+    at n (page-a3073eaf97ebce12.js:1:16675)
+    at l9 (4bd1b696-cf72ae8a39fa05aa.js:1:51101)
+    at oT (4bd1b696-cf72ae8a39fa05aa.js:1:70685)
+    at oW (4bd1b696-cf72ae8a39fa05aa.js:1:81785)
+    at ib (4bd1b696-cf72ae8a39fa05aa.js:1:114384)
+    at 4bd1b696-cf72ae8a39fa05aa.js:1:114229
+    at iv (4bd1b696-cf72ae8a39fa05aa.js:1:114237)
+    at io (4bd1b696-cf72ae8a39fa05aa.js:1:111320)
+    at iX (4bd1b696-cf72ae8a39fa05aa.js:1:132757)
+    at iB (4bd1b696-cf72ae8a39fa05aa.js:1:130968)
+(anonymous) @ error-bb3d50f136f8065e.js:1
+(index):1 Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline'". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(index):1 The resource https://next.cultark.net/images/hero-image.jpg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+
+
+[Error] TypeError: e.map is not a function. (In 'e.map(e=>(0,s.jsxs)("div",{className:"first:ml-[90vw] sm:first:ml-[90vw] xl:first:ml-[30vw]  last:mr-10 md:min-h-[50%] xl:min-h-[40%] h-fit bg-white/40 rounded-2xl backdrop-blur-md lg:w-[500px] w-[80%] flex flex-col justify-between p-8 shrink-0",children:[(0,s.jsx)("div",{className:"relative w-32 h-12",children:(0,s.jsx)(r.default,{src:e.acf.logo,alt:"".concat(e.acf.author_name," company logo"),fill:!0,className:"object-contain object-left",sizes:"128px"})}),(0,s.jsxs)("div",{children:[(0,s.jsx)("p",{className:"md:text-h3 font-semibold",children:e.title.rendered}),(0,s.jsx)("p",{children:e.acf.testimonial})]}),(0,s.jsxs)("div",{className:"flex items-center gap-3",children:[(0,s.jsx)("div",{style:{backgroundImage:"url('".concat(e.acf.picture||"/images/profile-pic.png","')")},className:"w-14 rounded-full shadow-md aspect-square bg-no-repeat bg-cover bg-center hidden md:block"}),(0,s.jsxs)("div",{children:[(0,s.jsxs)("p",{className:"md:text-xl font-medium",children:["~ ",e.acf.author_name]}),(0,s.jsx)("p",{className:"text-sm text-black/70 leading-none font-light",children:e.acf.author_position})]})]})]},e.slug))', 'e.map' is undefined)
+n — page-a3073eaf97ebce12.js:1:16679
+l9 — 4bd1b696-cf72ae8a39fa05aa.js:1:51103
+oT — 4bd1b696-cf72ae8a39fa05aa.js:1:70688
+ib — 4bd1b696-cf72ae8a39fa05aa.js:1:114387
+(anonymous function) — 4bd1b696-cf72ae8a39fa05aa.js:1:114232
+iv — 4bd1b696-cf72ae8a39fa05aa.js:1:114238
+io — 4bd1b696-cf72ae8a39fa05aa.js:1:111323
+iX — 4bd1b696-cf72ae8a39fa05aa.js:1:132760
+iB — 4bd1b696-cf72ae8a39fa05aa.js:1:130971
+iq — 4bd1b696-cf72ae8a39fa05aa.js:1:131316
+(anonymous function) — 4bd1b696-cf72ae8a39fa05aa.js:1:130600
+
+	s (964-088dee5a185be522.js:1:159292)
+	oh (4bd1b696-cf72ae8a39fa05aa.js:1:67801)
+	(anonymous function) (4bd1b696-cf72ae8a39fa05aa.js:1:68213)
+	lD (4bd1b696-cf72ae8a39fa05aa.js:1:49501)
+	lO (4bd1b696-cf72ae8a39fa05aa.js:1:49594)
+	o2 (4bd1b696-cf72ae8a39fa05aa.js:1:89052)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94018)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93771)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94278)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94278)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94278)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93771)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93771)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93771)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:93734)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94351)
+	ub (4bd1b696-cf72ae8a39fa05aa.js:1:103919)
+	uu (4bd1b696-cf72ae8a39fa05aa.js:1:94062)
+	iC (4bd1b696-cf72ae8a39fa05aa.js:1:128009)
+	iE (4bd1b696-cf72ae8a39fa05aa.js:1:126403)
+	iu (4bd1b696-cf72ae8a39fa05aa.js:1:112513)
+	io (4bd1b696-cf72ae8a39fa05aa.js:1:111866)
+	iX (4bd1b696-cf72ae8a39fa05aa.js:1:132760)
+	iB (4bd1b696-cf72ae8a39fa05aa.js:1:130971)
+	iq (4bd1b696-cf72ae8a39fa05aa.js:1:131316)
+	(anonymous function) (4bd1b696-cf72ae8a39fa05aa.js:1:130600)
+
+    Setting up fake worker failed: "Cannot load script at: https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js".   
+    [Error] Refused to load https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js because it does not appear in the script-src directive of the Content Security Policy.

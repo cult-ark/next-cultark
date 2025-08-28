@@ -9,10 +9,15 @@ const Testimonials = () => {
     const { data: testimonials } = useQuery({
         queryKey: ['testimonials'],
         queryFn: async () => {
-            const res = await axios(`/api/wp/testimonials?acf_format=standard&page=1&&per_page=2`);
-
-            return res.data;
-        }
+            try {
+                const res = await axios(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/testimonials?acf_format=standard&page=1&per_page=2`);
+                return res.data;
+            } catch (error) {
+                console.error('Failed to fetch testimonials:', error);
+                return [];
+            }
+        },
+        initialData: [] // Provide empty array as initial data to prevent map error
     });
     return (
         <div className='max-w-[110rem] mx-auto py-10 lg:pt-28 relative w-screen mb-10 lg:mb-28 overflow-hidden md:overflow-visible'>
@@ -29,7 +34,7 @@ const Testimonials = () => {
             >
                 {
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    (testimonials as any[])?.map((testimonial: any) => (
+                    Array.isArray(testimonials) && testimonials.map((testimonial: any) => (
                         <div
                             key={testimonial.slug}
                             className='first:ml-[90vw] sm:first:ml-[90vw] xl:first:ml-[30vw]  last:mr-10 md:min-h-[50%] xl:min-h-[40%] h-fit bg-white/40 rounded-2xl backdrop-blur-md lg:w-[500px] w-[80%] flex flex-col justify-between p-8 shrink-0'

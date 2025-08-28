@@ -1,6 +1,19 @@
 import { Metadata } from 'next';
-import { fetchProject } from '@/services/projects';
+import { fetchProject, fetchProjects } from '@/services/projects';
 import ProjectPageClient from './ProjectPageClient';
+
+// Generate static params for all portfolio projects
+export async function generateStaticParams() {
+    try {
+        const projects = await fetchProjects();
+        return projects.map((project) => ({
+            slug: project.slug,
+        }));
+    } catch (error) {
+        console.error('Error generating static params for portfolio projects:', error);
+        return [];
+    }
+}
 
 interface ProjectPageProps {
     params: Promise<{

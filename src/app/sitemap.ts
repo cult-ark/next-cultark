@@ -1,8 +1,10 @@
 import { MetadataRoute } from 'next'
 import { pdfDocs } from '@/data/pdfs'
 
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://backup.cultark.net'
+    const baseUrl = 'https://cultark.com'
 
     // Static pages
     const staticPages = [

@@ -3,8 +3,21 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Tags from '@/components/Portfolio/Tags';
-import { getServiceBySlug, getServiceItems, ServiceItem } from '@/services/cultark-services';
+import { getServiceBySlug, getServiceItems, ServiceItem, getServices } from '@/services/cultark-services';
 import Service from '@/types/Service';
+
+// Generate static params for all services
+export async function generateStaticParams() {
+    try {
+        const services = await getServices();
+        return services.map((service: Service) => ({
+            slug: service.slug,
+        }));
+    } catch (error) {
+        console.error('Error generating static params for services:', error);
+        return [];
+    }
+}
 
 interface ServicePageProps {
     params: Promise<{

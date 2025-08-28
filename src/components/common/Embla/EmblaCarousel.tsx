@@ -39,26 +39,32 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     const { data: clients } = useQuery({
         queryKey: ['clients'],
         queryFn: async () => {
-            const res = await axios({
-                url: `/api/wp/clients?_fields=title,featured_media,date`,
-            });
-            const imgs: string[] = [];
-            await Promise.all(
-                res.data.map(async (c: any) => {
-                    const img: any = await axios.get(`/api/wp/media/${c.featured_media}`);
-                    imgs.push(img.data.source_url);
-                })
-            );
+            try {
+                const res = await axios({
+                    url: `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/clients?_fields=title,featured_media,date`,
+                });
+                const imgs: string[] = [];
+                await Promise.all(
+                    res.data.map(async (c: any) => {
+                        const img: any = await axios.get(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/media/${c.featured_media}`);
+                        imgs.push(img.data.source_url);
+                    })
+                );
 
-            return imgs;
-        }
+                return imgs;
+            } catch (error) {
+                console.error('Failed to fetch clients:', error);
+                return [];
+            }
+        },
+        initialData: [] // Provide empty array as initial data
     });
 
     return (
         <div className='embla !w-[100vw]'>
             <div className='overflow-hidden bg-blue-300 w-full' ref={emblaRef}>
                 <div className='embla__container bg-red-600'>
-                    {(clients as any[])?.map((m, index) => (
+                    {Array.isArray(clients) && clients.map((m, index) => (
                         <div className='embla__slide' key={index}>
                             <div className='embla__slide__number relative'>
                                 <Image

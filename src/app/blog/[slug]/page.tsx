@@ -1,7 +1,20 @@
 import { Metadata } from 'next';
-import { getBlogPost } from '@/services/blog';
+import { getBlogPost, getBlogPosts } from '@/services/blog';
 import BlogPostClient from './BlogPostClient';
 import { notFound } from 'next/navigation';
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+    try {
+        const posts = await getBlogPosts();
+        return posts.map((post) => ({
+            slug: post.slug,
+        }));
+    } catch (error) {
+        console.error('Error generating static params for blog posts:', error);
+        return [];
+    }
+}
 
 interface BlogPostPageProps {
     params: Promise<{

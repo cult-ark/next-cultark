@@ -27,10 +27,9 @@ const fields = [
 ];
 export const getServices = async (page_limit = 20) => {
     try {
-        // Use the Next.js API proxy to avoid CORS issues
-        const apiUrl = typeof window !== 'undefined'
-            ? `/api/wp/services?acf_format=standard&_fields=${fields.join(',')}&per_page=${page_limit}&orderby=id&order=asc`
-            : `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/services?acf_format=standard&_fields=${fields.join(',')}&per_page=${page_limit}&orderby=id&order=asc`;
+        // For static export, always use direct WordPress URL
+        const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
+        const apiUrl = `${baseUrl}/wp-json/wp/v2/services?acf_format=standard&_fields=${fields.join(',')}&per_page=${page_limit}&orderby=id&order=asc`;
 
         const res = await axios(apiUrl);
         return res.data.map((service: Service) => ({
@@ -48,10 +47,9 @@ export const getServices = async (page_limit = 20) => {
 
 export const getServiceBySlug = async (slug: string) => {
     try {
-        // Use the Next.js API proxy to avoid CORS issues
-        const apiUrl = typeof window !== 'undefined'
-            ? `/api/wp/services?slug=${slug}&acf_format=standard&_fields=${fields.join(',')}`
-            : `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/services?slug=${slug}&acf_format=standard&_fields=${fields.join(',')}`;
+        // For static export, always use direct WordPress URL
+        const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
+        const apiUrl = `${baseUrl}/wp-json/wp/v2/services?slug=${slug}&acf_format=standard&_fields=${fields.join(',')}`;
 
         const res = await axios(apiUrl);
         if (res.data.length === 0) {
