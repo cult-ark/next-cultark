@@ -19,63 +19,79 @@ const Testimonials = () => {
         },
         initialData: [] // Provide empty array as initial data to prevent map error
     });
-    return (
-        <div className='max-w-[110rem] mx-auto py-10 lg:pt-28 relative w-screen mb-10 lg:mb-28 overflow-hidden md:overflow-visible'>
 
-            <div
-                className='px-20 text-left lg:text-[8vw] text-[14vw] font-semibold leading-none font-manrope xl:scale-x-125'
-                style={{ fontStretch: '150%' }}
-            >
-                DON'T TAKE OUR WORD FOR IT, HERE'S WHAT PEOPLE THINK OF US
-            </div>
-            <div
-                className='w-full h-full absolute left-0 top-0 flex items-center justify-center gap-10 overflow-x-scroll no-scrollbar'
-                style={{}}
-            >
-                {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    Array.isArray(testimonials) && testimonials.map((testimonial: any) => (
+    return (
+        <section className='w-full py-16 lg:py-24'>
+            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                {/* Header */}
+                <div className='mb-12 lg:mb-16'>
+                    <h2
+                        className='text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight font-manrope text-center lg:text-left'
+                        style={{ fontStretch: '150%' }}
+                    >
+                        DON'T TAKE OUR WORD FOR IT, HERE'S WHAT PEOPLE THINK OF US
+                    </h2>
+                </div>
+
+                {/* Testimonials Grid */}
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8'>
+                    {Array.isArray(testimonials) && testimonials.map((testimonial: any) => (
                         <div
                             key={testimonial.slug}
-                            className='first:ml-[90vw] sm:first:ml-[90vw] xl:first:ml-[30vw]  last:mr-10 md:min-h-[50%] xl:min-h-[40%] h-fit bg-white/40 rounded-2xl backdrop-blur-md lg:w-[500px] w-[80%] flex flex-col justify-between p-8 shrink-0'
+                            className='bg-white/40 rounded-2xl backdrop-blur-md p-6 lg:p-8 flex flex-col justify-between min-h-[300px] shadow-lg hover:shadow-xl transition-shadow duration-300'
                         >
-                            <div className='relative w-32 h-12'>
-                                <Image
-                                    src={testimonial.acf.logo}
-                                    alt={`${testimonial.acf.author_name} company logo`}
-                                    fill
-                                    className='object-contain object-left'
-                                    sizes="128px"
-                                />
+                            {/* Company Logo */}
+                            <div className='mb-6'>
+                                <div className='relative w-32 h-12'>
+                                    <Image
+                                        src={testimonial.acf.logo}
+                                        alt={`${testimonial.acf.author_name} company logo`}
+                                        fill
+                                        className='object-contain object-left'
+                                        sizes="128px"
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <p className='md:text-h3 font-semibold'>
+
+                            {/* Testimonial Content */}
+                            <div className='flex-grow mb-6'>
+                                <h3 className='text-xl lg:text-2xl font-semibold mb-4 text-gray-900'>
                                     {testimonial.title.rendered}
+                                </h3>
+                                <p className='text-gray-700 leading-relaxed'>
+                                    {testimonial.acf.testimonial}
                                 </p>
-                                <p>{testimonial.acf.testimonial}</p>
                             </div>
-                            <div className='flex items-center gap-3'>
+
+                            {/* Author Info */}
+                            <div className='flex items-center gap-4'>
                                 <div
                                     style={{
-                                        backgroundImage: `url('${testimonial.acf.picture || profile_pic
-                                            }')`,
+                                        backgroundImage: `url('${testimonial.acf.picture || profile_pic}')`,
                                     }}
-                                    className={`w-14 rounded-full shadow-md aspect-square bg-no-repeat bg-cover bg-center hidden md:block`}
+                                    className='w-12 h-12 lg:w-14 lg:h-14 rounded-full shadow-md bg-no-repeat bg-cover bg-center flex-shrink-0'
                                 />
                                 <div>
-                                    <p className='md:text-xl font-medium'>
+                                    <p className='text-lg lg:text-xl font-medium text-gray-900'>
                                         ~ {testimonial.acf.author_name}
                                     </p>
-                                    <p className='text-sm text-black/70 leading-none font-light'>
+                                    <p className='text-sm text-gray-600 font-light'>
                                         {testimonial.acf.author_position}
                                     </p>
                                 </div>
                             </div>
                         </div>
-                    ))
-                }
+                    ))}
+                </div>
+
+                {/* Empty State */}
+                {(!testimonials || testimonials.length === 0) && (
+                    <div className='text-center py-12'>
+                        <p className='text-gray-500'>No testimonials available at the moment.</p>
+                    </div>
+                )}
             </div>
-        </div>
+        </section>
     );
 };
 

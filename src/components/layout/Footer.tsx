@@ -12,13 +12,13 @@ const Footer = () => {
     return (
         <footer className='bg-cultark-gray text-white p-5 '>
             <div className='lg:max-w-[110rem] lg:mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pt-5'>
-                <div className='flex flex-col items-center md:items-start'>
+                <div className='flex flex-col items-start md:items-start'>
                     <Image
                         src='/images/logos/white-2048x396.png'
                         alt='Cultark Logo'
                         width={2048}
                         height={396}
-                        className='w-[60%] mx-auto h-auto'
+                        className='w-[60%] h-auto'
                         priority={false}
                         loading="lazy"
                     />
