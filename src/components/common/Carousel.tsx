@@ -7,11 +7,14 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
+    // Duplicate items for seamless infinite scroll
+    const duplicatedItems = [...items, ...items];
+
     return (
         <div className='w-full overflow-hidden relative'>
             <div className='flex animate-scroll whitespace-nowrap'>
-                {items.map((item, index) => (
-                    <div key={index} className='flex-shrink-0 w-80 md:w-96 bg-white m-2 p-3 rounded flex items-center justify-center relative h-24'>
+                {duplicatedItems.map((item, index) => (
+                    <div key={index} className='flex-shrink-0 w-80 md:w-96 bg-white mx-2 p-3 rounded flex items-center justify-center relative h-24'>
                         <Image
                             src={item}
                             alt={`Client ${index + 1}`}

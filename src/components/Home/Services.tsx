@@ -28,7 +28,7 @@ const Services = () => {
         if (services) setSelectedService(services[0]);
     }, [services]);
     return (
-        <div className='my-10 lg:mt-28'>
+        <div className='my-10 lg:mt-28 overflow-x-hidden'>
             <div className='xl:flex xl:items-start xl:gap-6'>
                 <div className='xl:flex-shrink-0'>
                     <div className='bg-cultark-blue uppercase text-cultark-white rounded-r-xl xl:px-4 py-4 xl:py-6 px-6 xl:text-vertical-lr w-2/3 xl:w-auto text-center mb-5 xl:mb-8'>

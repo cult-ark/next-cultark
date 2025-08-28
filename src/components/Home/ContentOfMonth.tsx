@@ -20,7 +20,7 @@ const ContentOfMonth = () => {
     });
     const router = useRouter();
     return (
-        <div className='w-full bg-cultark-gray text-cultark-white'>
+        <div className='w-full bg-cultark-gray text-cultark-white overflow-x-hidden'>
             <div className='px-6 py-14 lg:pt-28 max-w-[110rem] mx-auto z-10'>
 
                 <h2 className='text-h1-2 font-light text-width-max mb-0'>

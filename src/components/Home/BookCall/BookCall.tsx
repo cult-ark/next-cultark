@@ -25,10 +25,10 @@ const BookCallContent = () => {
     }, [searchParams]);
 
     return (
-        <div className='relative py-16 md:py-28 mt-5' id='getInTouch'>
-            <div className='xl:absolute right-0 top-0'>
-                <div className='bg-cultark-blue uppercase text-cultark-white xl:rounded-l-xl xl:rounded-r-none rounded-r-xl xl:px-4 py-4 xl:py-6 px-6 xl:text-vertical-lr w-2/3 xl:w-auto text-center mb-5 xl:mb-0'>
-                    <p className=''>Get In Touch</p>
+        <div className='relative py-16 md:py-28 mt-5 overflow-x-hidden' id='getInTouch'>
+            <div className='xl:absolute right-0 top-0 z-20'>
+                <div className='bg-cultark-blue uppercase text-cultark-white xl:rounded-l-xl xl:rounded-r-none rounded-r-xl xl:px-6 py-4 xl:py-8 px-8 xl:text-vertical-lr w-fit xl:w-auto text-center mb-5 xl:mb-0 shadow-lg xl:min-h-[120px] xl:flex xl:items-center xl:justify-center'>
+                    <p className='font-medium tracking-wider xl:whitespace-nowrap'>Get In Touch</p>
                 </div>
             </div>
 

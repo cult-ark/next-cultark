@@ -23,13 +23,13 @@ const ServicesMobile = ({
                 {isLoading ? (
                     <div>Loading services...</div>
                 ) : (
-                    <div className='flex flex-wrap gap-3'>
+                    <div className='flex flex-wrap gap-3 overflow-x-auto'>
                         {services &&
                             selectedService &&
                             services?.map((service, index) => (
                                 <button
                                     className={cx(
-                                        'shrink-0 flex gap-5 text-xl font-archivo px-5 py-1 w-fit rounded-full items-center',
+                                        'flex-shrink-0 flex gap-2 text-lg font-archivo px-4 py-2 w-fit rounded-full items-center whitespace-nowrap',
                                         selectedService.slug === service.slug
                                             ? 'bg-cultark-gray text-cultark-white'
                                             : 'border border-[#DDDDDD] hover:shadow-md'
@@ -52,7 +52,7 @@ const ServicesMobile = ({
                             ))}
                         <Link
                             className={cx(
-                                'shrink-0 flex gap-5 text-xl font-archivo px-5 py-1 w-fit rounded-full items-center justify-between hover:shadow-md group',
+                                'flex-shrink-0 flex gap-2 text-lg font-archivo px-4 py-2 w-fit rounded-full items-center justify-between hover:shadow-md group whitespace-nowrap',
                                 'bg-cultark-green text-cultark-gray hover:bg-cultark-blue hover:text-white'
                             )}
                             href={'/services'}
