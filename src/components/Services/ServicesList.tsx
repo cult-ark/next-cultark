@@ -110,7 +110,7 @@ const ServicesList = () => {
 
     if (error) {
         return (
-            <div className="container-80 py-8 lg:py-16">
+            <div className="max-w-[110rem] mx-auto px-6 py-8 lg:py-16">
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Unable to load services</h2>
                     <p className="text-gray-600">Please try refreshing the page or contact support if the problem persists.</p>
@@ -122,7 +122,7 @@ const ServicesList = () => {
     return (
         <Fragment>
             {/* Bootstrap-like container with 80% width */}
-            <div className='container-80 py-8 lg:py-16'>
+            <div className='max-w-[80rem] mx-auto px-6 py-8 lg:py-16'>
                 <div className='space-y-16 lg:space-y-20'>
                     {services
                         ?.sort((a, b) => a.acf.order - b.acf.order)

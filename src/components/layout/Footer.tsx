@@ -10,19 +10,21 @@ const Footer = () => {
     const pathname = usePathname();
 
     return (
-        <footer className='bg-cultark-gray text-white p-5 '>
-            <div className='lg:max-w-[110rem] lg:mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pt-5'>
-                <div className='flex flex-col items-start md:items-start'>
-                    <Image
-                        src='/images/logos/white-2048x396.png'
-                        alt='Cultark Logo'
-                        width={2048}
-                        height={396}
-                        className='w-[60%] h-auto'
-                        priority={false}
-                        loading="lazy"
-                    />
-                    <p className='text-[1rem] text-gray-300 mt-2 text-center md:text-left'>
+        <footer className='bg-cultark-gray text-white p-5'>
+            <div className='lg:max-w-[80rem] lg:mx-auto flex flex-col md:flex-row justify-between items-center gap-6 pt-5'>
+                <div className='flex flex-col items-center w-full md:w-auto'>
+                    <div className='w-full flex justify-center md:justify-start'>
+                        <Image
+                            src='/images/logos/white-2048x396.png'
+                            alt='Cultark Logo'
+                            width={2048}
+                            height={396}
+                            className='w-[60%] md:w-[60%] h-auto'
+                            priority={false}
+                            loading="lazy"
+                        />
+                    </div>
+                    <p className='text-[1rem] text-gray-300 mt-2 pt-2 text-left w-full md:text-left'>
                         Empowering creativity and technology for a better future.
                     </p>
                 </div>

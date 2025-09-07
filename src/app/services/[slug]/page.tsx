@@ -94,7 +94,7 @@ export default async function SingleServicePage({ params }: ServicePageProps) {
     }
 
     return (
-        <div className='pt-32 px-6 max-w-[110rem] mx-auto z-10 min-h-screen relative mb-10'>
+        <div className='pt-32 px-6 max-w-[80rem] mx-auto z-10 min-h-screen relative mb-10'>
             <Breadcrumb
                 items={[
                     { label: 'Home', url: '/' },
