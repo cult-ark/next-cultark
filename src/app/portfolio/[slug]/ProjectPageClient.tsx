@@ -36,7 +36,7 @@ const ProjectPageClient = ({ slug }: ProjectPageClientProps) => {
         );
 
     return (
-        <div className='max-w-[110rem] px-10 pt-32 lg:pt-36 min-h-screen mx-auto space-y-5 mb-10'>
+        <div className='max-w-[80%] px-10 pt-32 lg:pt-36 min-h-screen mx-auto space-y-5 mb-10'>
             <Breadcrumb
                 items={[
                     { label: 'Home', url: '/' },

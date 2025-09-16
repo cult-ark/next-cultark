@@ -32,7 +32,7 @@ const BookCallContent = () => {
                 </div>
             </div>
 
-            <div className='px-6 max-w-[110rem] mx-auto z-10'>
+            <div className='px-20 max-w-[100%] mx-auto z-10'>
                 <div className='max-w-4xl'>
                     <p className='text-16 lg:w-3/5 font-light uppercase mb-6 text-gray-600'>
                         Curious? Let's talk, book a call and let's figure it out together.

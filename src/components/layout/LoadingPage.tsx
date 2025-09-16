@@ -14,7 +14,7 @@ const LoadingPage = ({
     loadingPrefix: string;
 }) => {
     return (
-        <div className='max-w-[110rem] px-10  min-h-screen mx-auto space-y-3 mb-10 flex flex-col items-center justify-center text-gray-400'>
+        <div className='max-w-[80%] px-10  min-h-screen mx-auto space-y-3 mb-10 flex flex-col items-center justify-center text-gray-400'>
             {isError ? (
                 <>
                     <TriangleAlertIcon size={60} className='' />

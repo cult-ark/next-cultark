@@ -46,11 +46,11 @@ const Hero = () => {
             <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10" />
 
             <div className="relative z-20 flex flex-col items-center text-center w-full">
-                <h1 className="text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 sm:mb-8 md:mb-10 uppercase px-4">
+                <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-6 sm:mb-8 md:mb-10 uppercase px-4">
                     Your Business Needs
                 </h1>
 
-                <div className="min-h-[60px] sm:min-h-[80px] md:min-h-[100px] lg:min-h-[120px] flex items-center justify-center w-full px-4">
+                <div className="min-h-[40px] sm:min-h-[50px] md:min-h-[60px] lg:min-h-[70px] flex items-center justify-center w-full px-4">
                     <div className={`flex items-center justify-center transform transition-all duration-500 ease-in-out
             ${isAnimating
                             ? 'opacity-0 -translate-y-4 scale-95'
@@ -63,19 +63,19 @@ const Hero = () => {
                                 <Image
                                     src="/images/cultark-logo.png"
                                     alt="Company Logo"
-                                    width={112}
-                                    height={112}
-                                    className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 mr-3 sm:mr-4"
+                                    width={96}
+                                    height={96}
+                                    className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16 mr-2 sm:mr-3"
                                     priority
-                                    sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, (max-width: 1024px) 80px, (max-width: 1280px) 96px, 112px"
+                                    sizes="(max-width: 640px) 32px, (max-width: 768px) 40px, (max-width: 1024px) 48px, (max-width: 1280px) 56px, 64px"
                                 />
-                                <span className="text-white font-archivo uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold">
+                                <span className="text-white font-archivo uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-extrabold">
                                     CULTARK
                                 </span>
                             </>
                         ) : (
                             // Regular text version
-                            <span className="text-white font-archivo uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-center">
+                            <span className="text-white font-archivo uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold text-center">
                                 {flipTexts[currentText]}
                             </span>
                         )}

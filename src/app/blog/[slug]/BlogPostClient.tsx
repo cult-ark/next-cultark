@@ -86,7 +86,7 @@ const BlogPostClient = ({ slug }: BlogPostClientProps) => {
                     dangerouslySetInnerHTML={{
                         __html: post?.acf.content ?? '',
                     }}
-                    className='max-w-[110rem] mx-auto px-12 my-10'
+                    className='max-w-[80%] mx-auto px-12 my-10'
                 ></div>
             </div>
         </>

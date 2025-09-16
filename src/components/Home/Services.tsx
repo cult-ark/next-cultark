@@ -36,7 +36,7 @@ const Services = () => {
                     </div>
                 </div>
 
-                <div className='px-6 max-w-[110rem] mx-auto xl:flex-1 xl:px-0 xl:mx-0'>
+                <div className='px-6 max-w-[80%] mx-auto xl:flex-1 xl:px-0 xl:mx-0'>
                     <h2 className='text-h2 font-light text-width-max'>
                         The Magic Within the Cult
                     </h2>

@@ -11,7 +11,7 @@ import scrollToElement from 'scroll-to-element';
 
 const TrustedBy = () => {
     return (
-        <div className='px-6 py-20 lg:pt-28 max-w-[110rem] mx-auto z-10 space-y-5 overflow-x-hidden'>
+        <div className='px-6 py-20 lg:pt-28 max-w-[80%] mx-auto z-10 space-y-5 overflow-x-hidden'>
 
             <h2 className='text-h1-2 !text-center'>Trusted By</h2>
             <div className='w-full flex items-center justify-evenly gap-5 flex-wrap no-scrollbar pb-10 overflow-x-hidden'>

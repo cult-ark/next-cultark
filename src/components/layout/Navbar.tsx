@@ -17,7 +17,7 @@ const Navbar = () => {
     return (
         <header className='fixed w-full font-archivo z-[100]'>
             <div className='hidden lg:flex justify-center w-full mt-10 px-4'>
-                <div className='flex justify-between align-center bg-cultark-white/70 border-[1px] border-white w-fit max-w-[110rem] rounded-full p-3 pl-5 gap-14 backdrop-blur-sm shadow-lg container'>
+                <div className='flex justify-between align-center bg-cultark-white/70 border-[1px] border-white w-fit max-w-[80%] rounded-full p-3 pl-5 gap-14 backdrop-blur-sm shadow-lg container'>
                     <Link href={'/'} className='w-8 flex items-center'>
                         <Image
                             className='aspect-square object-cover'

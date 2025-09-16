@@ -97,7 +97,7 @@ const ReportPageClient = () => {
     if (error) {
         return (
             <div className="pt-24 lg:pt-36 min-h-screen">
-                <div className="max-w-[110rem] mx-auto px-4 md:px-8 lg:px-12 mb-10 flex flex-col items-center justify-center">
+                <div className="max-w-[80%] mx-auto px-4 md:px-8 lg:px-12 mb-10 flex flex-col items-center justify-center">
                     <div className="text-red-500 mb-4">
                         <FaFile size={50} />
                     </div>
@@ -118,7 +118,7 @@ const ReportPageClient = () => {
 
     return (
         <div className="pt-24 lg:pt-36 min-h-screen">
-            <div className="max-w-[110rem] mx-auto px-4 md:px-8 lg:px-12 mb-10">
+            <div className="max-w-[80%] mx-auto px-4 md:px-8 lg:px-12 mb-10">
                 <div className="mb-8">
                     <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 mb-6">
                         <div className="bg-cultark-blue/10 p-4 rounded-xl w-16 h-16 flex items-center justify-center flex-shrink-0">

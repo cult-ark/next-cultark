@@ -10,7 +10,7 @@ const LoadingPost = () => {
                 />
             </div>
             <div className='bg-gray-200 h-[40vh] mb-5 animate-pulse ' />
-            <div className='max-w-[110rem] mx-auto space-y-5 animate-pulse px-12'>
+            <div className='max-w-[80%] mx-auto space-y-5 animate-pulse px-12'>
                 <div className='h-12 bg-gray-200 w-[500px] rounded-lg' />
                 <div className='h-8 bg-gray-200 w-[420px] rounded-lg' />
                 <div className='h-64 bg-gray-200 w-full rounded-lg' />

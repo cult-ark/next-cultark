@@ -22,7 +22,7 @@ const PortfolioProjects = () => {
         retry: 1,
     });
     return (
-        <div className='lg:pt-36 pt-20 px-6 max-w-[110rem] mx-auto'>
+        <div className='lg:pt-36 pt-20 px-6 max-w-[80%] mx-auto'>
 
             <h1 className='text-h3 md:text-h1-2 xl:text-7xl order-1 group-even:text-right w-full '>
                 All Projects

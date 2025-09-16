@@ -110,7 +110,7 @@ const ServicesList = () => {
 
     if (error) {
         return (
-            <div className="max-w-[110rem] mx-auto px-6 py-8 lg:py-16">
+            <div className="max-w-[80%] mx-auto px-6 py-8 lg:py-16">
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Unable to load services</h2>
                     <p className="text-gray-600">Please try refreshing the page or contact support if the problem persists.</p>
