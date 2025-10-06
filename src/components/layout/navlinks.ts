@@ -16,7 +16,7 @@ export const navLinks = [
         path: '/blog',
     },
     {
-        title: 'Ai Report',
+        title: 'Trends Report',
         path: '/report',
     },
     {
