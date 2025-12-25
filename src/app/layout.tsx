@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     canonical: "https://backup.cultark.net",
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "WealWviTjnw9rxScdlJPYPfD8Te-bMOqlL0mTAe1_lY",
     yandex: "your-yandex-verification-code",
     yahoo: "your-yahoo-verification-code",
   },
