@@ -5,6 +5,7 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StructuredData from "@/components/common/StructuredData";
+import MetaPixel from "@/components/common/MetaPixel";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -96,6 +97,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//backup.cultark.net" />
         <link rel="dns-prefetch" href="//calendar.google.com" />
+        <MetaPixel />
       </head>
       <body
         className={`${archivo.variable} ${manrope.variable} antialiased font-archivo text-cultark-gray overflow-x-hidden`}
