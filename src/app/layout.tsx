@@ -99,6 +99,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${archivo.variable} ${manrope.variable} antialiased font-archivo text-cultark-gray overflow-x-hidden`}
+        suppressHydrationWarning
       >
         <QueryProvider>
           <Navbar />

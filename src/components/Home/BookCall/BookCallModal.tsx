@@ -1,53 +1,55 @@
-'use client'
+'use client';
 
-import { XIcon, ArrowLeft, Calendar, User } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { DayPicker } from 'react-day-picker';
+import { format, parseISO, isSameDay } from 'date-fns';
+import { User, Calendar as CalendarIcon, Clock, Loader2, XIcon, ArrowLeft } from 'lucide-react';
+import 'react-day-picker/dist/style.css';
+
+// Using environment variable for API URL
+const API_URL = process.env.NEXT_PUBLIC_BOOKING_API_URL || 'http://localhost:8000';
+
+const employees = [
+    { name: 'Farah Nabil', email: 'farah.nabil@cultark.com', role: 'Senior Account Manager' },
+    { name: 'May Omar', email: 'may.omar@cultark.com', role: 'Senior Account Manager' },
+    { name: 'Amira Kadry', email: 'amira.kadry@cultark.com', role: 'Senior Account Manager' },
+    { name: 'Zeina Khaled', email: 'zeina.khaled@cultark.com', role: 'Senior Account Manager' },
+];
+
+type Slot = {
+    start: string;
+    end?: string;
+    [key: string]: any;
+};
 
 type Props = {
     open: boolean;
     setOpen: (open: boolean) => void;
 };
 
-const employees = [
-    {
-        name: 'Farah Nabil',
-        bookingLink: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2dwKBE6giZQzJgWLDcu5F-pbkQCzB-78IruL-WeLl5Fude-FflNS8IitVWT2TOwTj8rc2Um2cH',
-        role: 'Senior Account Manager',
-    },
-    {
-        name: 'May Omar',
-        bookingLink: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0gSvqeqmOwVDGztX5Ln682EaDoUO1HQsuvzliSdKrLflakNdWid7GnUMQVZz4m_vIkDvtdQELx',
-        role: 'Senior Account Manager',
-    },
-    {
-        name: 'Amira Kadry',
-        bookingLink: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0drBFCE7UlFYa7uV4AWM3Y1NkfF1lU9QR3gXMgVdEHFJCIBO_pvVSmsRpoqNpcirvtcCeGD6gi',
-        role: 'Senior Account Manager',
-    },
-    {
-        name: 'Zeina Khaled',
-        bookingLink: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2-SWb91UaTt4uc2XqcCLYD_cM-qjJZNSz6yH_cDD-mDybG_opnRJ74uny84bSiB2A9vwh6SAiF',
-        role: 'Senior Account Manager',
-    },
-];
+export default function BookCallModal({ open, setOpen }: Props) {
+    const [selectedEmp, setSelectedEmp] = useState(employees[0]);
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+    const [allSlots, setAllSlots] = useState<Slot[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+    const [bookingLoading, setBookingLoading] = useState(false);
 
-const BookCallModal = ({ open, setOpen }: Props) => {
-    const [selectedEmployee, setSelectedEmployee] = useState<typeof employees[0] | null>(null);
-    const [iframeContent, setIframeContent] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const hasPrefetched = useRef(false);
+    // Form state
+    const [clientName, setClientName] = useState('');
+    const [clientEmail, setClientEmail] = useState('');
+    const [clientPhone, setClientPhone] = useState('');
+
+    const router = useRouter();
 
     // Handle escape key and body scroll lock
     useEffect(() => {
         if (open) {
             document.body.style.overflow = 'hidden';
-
             const handleEscape = (e: KeyboardEvent) => {
-                if (e.key === 'Escape') {
-                    setOpen(false);
-                }
+                if (e.key === 'Escape') setOpen(false);
             };
-
             document.addEventListener('keydown', handleEscape);
             return () => {
                 document.removeEventListener('keydown', handleEscape);
@@ -58,107 +60,80 @@ const BookCallModal = ({ open, setOpen }: Props) => {
         }
     }, [open, setOpen]);
 
-    // Reset selected employee when modal closes
+    // Reset state when modal closes
     useEffect(() => {
         if (!open) {
-            setSelectedEmployee(null);
-            setIframeContent(null);
+            setSelectedSlot(null);
+            setClientName('');
+            setClientEmail('');
         }
     }, [open]);
 
-    // Prefetch links when modal opens
+    // Fetch availability whenever the selected employee changes
     useEffect(() => {
-        if (open && !hasPrefetched.current) {
-            employees.forEach(employee => {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = employee.bookingLink;
-                document.head.appendChild(link);
-            });
-            hasPrefetched.current = true;
-        }
-    }, [open]);
+        if (!open) return;
 
-    const handleEmployeeSelect = async (employee: typeof employees[0]) => {
-        setSelectedEmployee(employee);
-        setIsLoading(true);
-
-        // Check cache first
-        const cacheKey = `calendar-cache-${employee.name}`;
-        const cached = localStorage.getItem(cacheKey);
-
-        if (cached) {
-            const cacheData = JSON.parse(cached);
-            // Use cached content if it's less than 1 hour old
-            if (Date.now() - cacheData.timestamp < 3600000) {
-                setIframeContent(cacheData.html);
-                setIsLoading(false);
-                return;
+        async function fetchSlots() {
+            setLoading(true);
+            try {
+                const res = await fetch(`${API_URL}/api/availability?employee=${selectedEmp.email}`);
+                if (!res.ok) throw new Error('Failed to fetch availability');
+                const data: Slot[] = await res.json();
+                setAllSlots(data);
+                console.log(data);
+            } catch (error) {
+                console.error("Error fetching slots:", error);
+                setAllSlots([]);
+            } finally {
+                setLoading(false);
             }
         }
+        fetchSlots();
+    }, [selectedEmp, open]);
 
-        // Fetch fresh content
+    const dailySlots: Slot[] = allSlots.filter((slot: Slot) =>
+        selectedDate ? isSameDay(parseISO(slot.start), selectedDate) : false
+    );
+
+    const handleBookingSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!selectedSlot || !clientName || !clientEmail) return;
+
+        setBookingLoading(true);
         try {
-            const response = await fetch(employee.bookingLink, {
-                mode: 'no-cors', // Bypass CORS for this demo (may not work in all cases)
-                credentials: 'omit'
+            const res = await fetch(`${API_URL}/api/book`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    start: selectedSlot.start,
+                    end: selectedSlot.end,
+                    manager: selectedSlot.manager,
+                    employee: selectedEmp.email,
+                    client_name: clientName,
+                    client_email: clientEmail,
+                    client_phone: clientPhone
+                }),
             });
-            const html = await response.text();
 
-            // Cache with timestamp
-            const cacheData = {
-                html,
-                timestamp: Date.now()
-            };
-            localStorage.setItem(cacheKey, JSON.stringify(cacheData));
-
-            setIframeContent(html);
+            if (res.ok) {
+                const data = await res.json();
+                router.push(`/thanks?date=${selectedSlot.start}&meet=${data.meetLink}`);
+                setOpen(false);
+            } else {
+                alert('Booking failed. Please try again.');
+            }
         } catch (error) {
-            console.error('Failed to load calendar', error);
-            // Fallback to regular iframe by keeping iframeContent null
+            console.error('Booking error:', error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            setBookingLoading(false);
         }
-
-        setIsLoading(false);
-    };
-
-    const handleBackClick = () => {
-        setSelectedEmployee(null);
-        setIframeContent(null);
     };
 
     const handleOverlayClick = (e: React.MouseEvent) => {
         if (e.target === e.currentTarget) {
             setOpen(false);
         }
-    };
-
-    const renderCalendar = () => {
-        if (isLoading) {
-            return (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cultark-blue"></div>
-                </div>
-            );
-        }
-
-        if (iframeContent) {
-            return (
-                <div
-                    className="w-full h-full"
-                    dangerouslySetInnerHTML={{ __html: iframeContent }}
-                />
-            );
-        }
-
-        // Fallback to regular iframe if no cached content
-        return (
-            <iframe
-                src={selectedEmployee?.bookingLink}
-                className="w-full h-full border-0"
-                title={`Book appointment with ${selectedEmployee?.name}`}
-                allow="camera; microphone; fullscreen; display-capture"
-            />
-        );
     };
 
     if (!open) return null;
@@ -168,18 +143,13 @@ const BookCallModal = ({ open, setOpen }: Props) => {
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
             onClick={handleOverlayClick}
         >
-            <div
-                className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="modal-title"
-            >
+            <div className="relative w-full max-w-6xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 bg-gray-50">
+                <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 bg-gray-50 flex-shrink-0">
                     <div className="flex items-center space-x-3">
-                        {selectedEmployee && (
+                        {selectedSlot && (
                             <button
-                                onClick={handleBackClick}
+                                onClick={() => setSelectedSlot(null)}
                                 className="p-2 hover:bg-gray-200 rounded-full transition-colors"
                                 aria-label="Go back"
                             >
@@ -187,9 +157,9 @@ const BookCallModal = ({ open, setOpen }: Props) => {
                             </button>
                         )}
                         <div className="flex items-center space-x-2">
-                            <Calendar className="w-6 h-6 text-cultark-blue" />
-                            <h2 id="modal-title" className="text-xl md:text-2xl font-semibold text-gray-900">
-                                {selectedEmployee ? `Book with ${selectedEmployee.name}` : 'Book a Call'}
+                            <CalendarIcon className="w-6 h-6 text-cultark-blue" />
+                            <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
+                                {selectedSlot ? 'Confirm Booking' : 'Book a Consultation'}
                             </h2>
                         </div>
                     </div>
@@ -203,50 +173,130 @@ const BookCallModal = ({ open, setOpen }: Props) => {
                 </div>
 
                 {/* Content */}
-                <div className="h-full max-h-[calc(90vh-80px)] overflow-y-auto">
-                    {!selectedEmployee ? (
-                        /* Employee Selection */
-                        <div className="p-6 md:p-8">
-                            <div className="text-center mb-8">
-                                <p className="text-gray-600 text-lg">
-                                    Choose a team member to schedule your consultation
-                                </p>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-                                {employees.map((employee) => (
+                <div className="overflow-y-auto flex-1 p-6">
+                    {!selectedSlot ? (
+                        <div className="flex flex-col gap-8">
+                            {/* Employee Tabs */}
+                            <div className="flex flex-wrap gap-2 bg-gray-50 p-2 rounded-xl">
+                                {employees.map((emp) => (
                                     <button
-                                        key={employee.name}
-                                        onClick={() => handleEmployeeSelect(employee)}
-                                        className="group p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-cultark-blue hover:shadow-lg transition-all duration-200 text-left"
+                                        key={emp.email}
+                                        onClick={() => setSelectedEmp(emp)}
+                                        className={`flex-1 min-w-[200px] py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all ${selectedEmp.email === emp.email ? 'bg-white shadow-md text-blue-600 font-bold' : 'text-gray-500 hover:bg-gray-100'
+                                            }`}
                                     >
-                                        <div className="flex items-center space-x-4">
-                                            <div className="w-12 h-12 bg-cultark-blue/10 rounded-full flex items-center justify-center group-hover:bg-cultark-blue/20 transition-colors">
-                                                <User className="w-6 h-6 text-cultark-blue" />
-                                            </div>
-                                            <div>
-                                                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-cultark-blue transition-colors">
-                                                    {employee.name}
-                                                </h3>
-                                                <p className="text-sm text-gray-500">{employee.role}</p>
-                                            </div>
-                                        </div>
+                                        <User className="w-4 h-4" />
+                                        <span className="text-sm">{emp.name}</span>
                                     </button>
                                 ))}
                             </div>
+
+                            <div className="grid md:grid-cols-2 gap-12">
+                                {/* Calendar */}
+                                <div className="flex justify-center bg-gray-50 rounded-2xl p-4">
+                                    <DayPicker
+                                        mode="single"
+                                        selected={selectedDate}
+                                        onSelect={setSelectedDate}
+                                        className="modern-calendar"
+                                        disabled={{ before: new Date() }}
+                                    />
+                                </div>
+
+                                {/* Time Slots */}
+                                <div>
+                                    <div className="flex items-center gap-2 mb-6 text-gray-800 font-semibold text-lg">
+                                        <Clock className="w-5 h-5 text-blue-500" />
+                                        <h3>Available Times for {selectedDate ? format(selectedDate, 'PPP') : 'Selected Date'}</h3>
+                                    </div>
+
+                                    {loading ? (
+                                        <div className="flex items-center gap-2 text-gray-400">
+                                            <Loader2 className="animate-spin" /> Checking calendars...
+                                        </div>
+                                    ) : dailySlots.length > 0 ? (
+                                        <div className="grid grid-cols-2 gap-3">
+                                            {dailySlots.map((slot: Slot, i) => (
+                                                <button
+                                                    key={i}
+                                                    onClick={() => setSelectedSlot(slot)}
+                                                    className="p-4 border border-gray-200 rounded-xl hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all text-left group"
+                                                >
+                                                    <span className="block font-medium">{format(parseISO(slot.start), 'p')}</span>
+                                                    <span className="text-xs opacity-60 group-hover:opacity-100">30 min session</span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="text-gray-400 italic">No slots found for this date. Try another day.</p>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     ) : (
-                        /* Calendar Container */
-                        <div className="h-full relative">
-                            <div className="aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/9] w-full">
-                                {renderCalendar()}
+                        /* Booking Form */
+                        <div className="max-w-md mx-auto">
+                            <div className="bg-blue-50 p-6 rounded-2xl mb-8">
+                                <h3 className="font-semibold text-blue-900 mb-2">Appointment Details</h3>
+                                <p className="text-blue-700 flex items-center gap-2 mb-1">
+                                    <User className="w-4 h-4" /> with {selectedEmp.name}
+                                </p>
+                                <p className="text-blue-700 flex items-center gap-2">
+                                    <Clock className="w-4 h-4" /> {format(parseISO(selectedSlot.start), 'PPP @ p')}
+                                </p>
                             </div>
+
+                            <form onSubmit={handleBookingSubmit} className="space-y-4">
+                                <div>
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        required
+                                        value={clientName}
+                                        onChange={(e) => setClientName(e.target.value)}
+                                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                        placeholder="John Doe"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={clientEmail}
+                                        onChange={(e) => setClientEmail(e.target.value)}
+                                        required
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cultark-blue focus:border-transparent outline-none transition-all"
+                                        placeholder="john@company.com"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        value={clientPhone}
+                                        onChange={(e) => setClientPhone(e.target.value)}
+                                        required
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cultark-blue focus:border-transparent outline-none transition-all"
+                                        placeholder="+1 234 567 8900"
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={bookingLoading}
+                                    className="w-full py-4 bg-cultark-blue text-white font-bold rounded-xl hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-4"
+                                >
+                                    {bookingLoading ? <Loader2 className="animate-spin" /> : 'Confirm Booking'}
+                                </button>
+                            </form>
                         </div>
                     )}
                 </div>
             </div>
         </div>
     );
-};
-
-export default BookCallModal;
+}

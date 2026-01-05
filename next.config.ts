@@ -6,7 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig: NextConfig = {
   // Enable static export
-  output: 'export',
+  // output: 'export',
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
 
