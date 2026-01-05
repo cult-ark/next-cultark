@@ -8,13 +8,19 @@ import { User, Calendar as CalendarIcon, Clock, Loader2, XIcon, ArrowLeft } from
 import 'react-day-picker/dist/style.css';
 
 // Using environment variable for API URL
-const API_URL = process.env.NEXT_PUBLIC_BOOKING_API_URL || 'http://localhost:8000';
+const API_URL = 'http://localhost:8000';
+// const API_URL = 'http://calendar.cultark.net';
+
+// const employees = [
+//     { name: 'Farah Nabil', email: 'farah.nabil@cultark.com', role: 'Senior Account Manager' },
+//     { name: 'May Omar', email: 'may.omar@cultark.com', role: 'Senior Account Manager' },
+//     { name: 'Amira Kadry', email: 'amira.kadry@cultark.com', role: 'Accounts Director' },
+//     { name: 'Zeina Khaled', email: 'zeina.khaled@cultark.com', role: 'Senior Account Manager' },
+// ];
 
 const employees = [
-    { name: 'Farah Nabil', email: 'farah.nabil@cultark.com', role: 'Senior Account Manager' },
-    { name: 'May Omar', email: 'may.omar@cultark.com', role: 'Senior Account Manager' },
-    { name: 'Amira Kadry', email: 'amira.kadry@cultark.com', role: 'Senior Account Manager' },
-    { name: 'Zeina Khaled', email: 'zeina.khaled@cultark.com', role: 'Senior Account Manager' },
+    { name: 'Farah Nabil', email: 'ilegno@cultark.com', role: 'Accounts Director' },
+    { name: 'May Omar', email: 'tools@cultark.com', role: 'Accounts Director' },
 ];
 
 type Slot = {
@@ -117,7 +123,7 @@ export default function BookCallModal({ open, setOpen }: Props) {
 
             if (res.ok) {
                 const data = await res.json();
-                router.push(`/thanks?date=${selectedSlot.start}&meet=${data.meetLink}`);
+                router.push(`/thanks?date=${encodeURIComponent(selectedSlot.start)}&meet=${encodeURIComponent(data.meetLink)}`);
                 setOpen(false);
             } else {
                 alert('Booking failed. Please try again.');
