@@ -9,7 +9,7 @@ import 'react-day-picker/dist/style.css';
 
 // Using environment variable for API URL
 // const API_URL = 'http://localhost:8000';
-const API_URL = 'http://calendar.cultark.net';
+const API_URL = 'https://calendar.cultark.net';
 
 const employees = [
     { name: 'Farah Nabil', email: 'farah.nabil@cultark.com', role: 'Senior Account Manager' },
