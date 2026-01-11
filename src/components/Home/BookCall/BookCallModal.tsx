@@ -81,7 +81,7 @@ export default function BookCallModal({ open, setOpen }: Props) {
                 if (!res.ok) throw new Error('Failed to fetch availability');
                 const data: Slot[] = await res.json();
                 setAllSlots(data);
-                console.log(data);
+                // console.log(data);
             } catch (error) {
                 console.error("Error fetching slots:", error);
                 setAllSlots([]);

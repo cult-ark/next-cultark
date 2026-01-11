@@ -10,7 +10,7 @@ function ThanksContent() {
   const date = searchParams.get('date');
   const meet = searchParams.get('meet');
 
-  console.log(date);
+  // console.log(date);
 
   // Safely format the date, handling invalid or missing dates
   const formatDate = (dateString: string | null): string => {

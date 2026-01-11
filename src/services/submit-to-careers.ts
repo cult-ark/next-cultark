@@ -96,7 +96,7 @@ export const submitToCareersGoogle = async (data: FormDataType) => {
     dataArr.push('Message=' + data.message);
 
     dataArr.push(`type=CAREERS`);
-    console.log(dataArr);
+    // console.log(dataArr);
     fetch(process.env.NEXT_PUBLIC_GOOGLE_URL!, {
         redirect: 'follow',
         method: 'POST',
@@ -116,7 +116,7 @@ export const submitToCareersGoogle = async (data: FormDataType) => {
         })
         .catch(function (error) {
             alert('Failed to submit, please try again later.');
-            console.log(error);
+            // console.log(error);
         }).finally(() => {
             alert('Form submitted successfully!');
         }

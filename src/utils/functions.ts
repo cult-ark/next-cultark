@@ -2,10 +2,10 @@ import { load } from 'cheerio';
 
 export function getGridPosition(index: number, total: number) {
     const mid = Math.ceil(total / 2); // Determine the middle index
-    console.log(mid);
+    // console.log(mid);
     const column = index <= mid ? 1 : 2; // If the index is less than or equal to the middle index, the column is 1, otherwise it is 2
     const row = (index % mid) + 1;
-    console.log(index, { row, column });
+    // console.log(index, { row, column });
     return { row, column };
 }
 

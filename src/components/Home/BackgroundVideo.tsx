@@ -23,7 +23,7 @@ const BackgroundVideo = () => {
 
                     if (playPromise !== undefined) {
                         playPromise.catch(error => {
-                            console.log("Video autoplay prevented:", error);
+                            // console.log("Video autoplay prevented:", error);
                             // Autoplay failed, but video is still loaded and shown
                             // The poster will remain displayed
                         });

@@ -69,15 +69,15 @@ export const getServiceBySlug = async (slug: string) => {
 };
 
 export const getServiceItems = async (serviceId: number) => {
-    console.log('🔍 getServiceItems (local) called with serviceId:', serviceId);
-
+    // console.log('🔍 getServiceItems (local) called with serviceId:', serviceId);    
+    
     // rawItems is an object keyed by string IDs => each value is { ID: string, item_title: string, item_description: string, service_id: string }
     const allItems = Object.values(rawItems as Record<string, any>);
-    console.log('📦 Loaded items from JSON:', allItems.length);
+    // console.log('📦 Loaded items from JSON:', allItems.length);
 
     // Filter by serviceId (JSON stores it as string)
     const filtered = allItems.filter((it) => Number(it.service_id) === Number(serviceId));
-    console.log('✅ Filtered items count:', filtered.length);
+    // console.log('✅ Filtered items count:', filtered.length);
 
     // Map into the expected ServiceItem shape used by the UI
     const mapped = filtered.map((it) => {
