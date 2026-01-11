@@ -15,6 +15,7 @@ const Hero = () => {
 
     const [currentText, setCurrentText] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -28,6 +29,16 @@ const Hero = () => {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        const timeoutId = window.setTimeout(() => {
+            setVideoSrc('/images/OriginalVideo.mp4');
+        }, 0);
+
+        return () => {
+            window.clearTimeout(timeoutId);
+        };
+    }, []);
+
     return (
         <div className="relative h-screen w-full flex flex-col items-center justify-center font-manrope pt-16 sm:pt-20 md:pt-24 lg:pt-28 overflow-hidden">
             {/* Background Video */}
@@ -35,7 +46,7 @@ const Hero = () => {
                 className="absolute top-0 left-0 w-full h-full z-0
                    object-cover object-center
                    min-w-full min-h-full"
-                src="/images/OriginalVideo.mp4"
+                src={videoSrc ?? undefined}
                 autoPlay
                 loop
                 muted

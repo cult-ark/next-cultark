@@ -14,13 +14,13 @@ export function truncate(text: string, options: { length: number; omission?: str
 /**
  * Debounce function to limit the rate of function calls
  */
-export function debounce<T extends (...args: any[]) => any>(
-    func: T,
+export function debounce<Args extends unknown[], Return>(
+    func: (...args: Args) => Return,
     wait: number
-): (...args: Parameters<T>) => void {
+): (...args: Args) => void {
     let timeout: NodeJS.Timeout;
 
-    return function executedFunction(...args: Parameters<T>) {
+    return function executedFunction(...args: Args) {
         const later = () => {
             clearTimeout(timeout);
             func(...args);

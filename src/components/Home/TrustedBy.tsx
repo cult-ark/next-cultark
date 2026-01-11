@@ -17,19 +17,18 @@ const TrustedBy = () => {
             <div className='w-full flex items-center justify-evenly gap-5 flex-wrap no-scrollbar pb-10 overflow-x-hidden'>
                 {[google_partner, meta_partner, tiktok].map((partner, index) => (
                     <div key={index} className={cx(
-                        'relative flex-shrink-0 h-28 lg:h-36',
+                        'relative flex-shrink-0 h-28 lg:h-36 w-[200px] lg:w-[240px]',
                         partner == tiktok && 'border rounded-lg border-gray-600'
                     )}>
                         <Image
                             src={partner}
                             alt={`Partner ${index + 1}`}
-                            width={200}
-                            height={144}
+                            fill
                             className={cx(
-                                'h-28 lg:h-36 w-auto object-contain',
+                                'object-contain',
                                 partner == tiktok && 'rounded-lg'
                             )}
-                            sizes="(max-width: 1024px) 112px, 144px"
+                            sizes="(max-width: 1024px) 200px, 240px"
                         />
                     </div>
                 ))}
@@ -45,7 +44,7 @@ const TrustedBy = () => {
                         })
                     }
                 >
-                    <span>Let's Talk</span>
+                    <span>{"Let's Talk"}</span>
                     <Heart size={20} />
                 </button>
                 {/* <Link

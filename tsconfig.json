@@ -40,6 +40,7 @@
   ],
   "exclude": [
     "node_modules",
-    "ReactApp"
+    "ReactApp",
+    "**/__tests__/**"
   ]
 }

@@ -5,14 +5,28 @@ import Image from 'next/image';
 const profile_pic = '/images/profile-pic.png';
 import axios from 'axios';
 
+type WordPressTestimonial = {
+    slug: string;
+    title: {
+        rendered: string;
+    };
+    acf: {
+        logo: string;
+        author_name: string;
+        author_position: string;
+        testimonial: string;
+        picture?: string;
+    };
+};
+
 const Testimonials = () => {
-    const { data: testimonials } = useQuery({
+    const { data: testimonials } = useQuery<WordPressTestimonial[]>({
         queryKey: ['testimonials'],
         queryFn: async () => {
             try {
-                const res = await axios(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/testimonials?acf_format=standard&page=1&per_page=2`);
+                const res = await axios.get<WordPressTestimonial[]>(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/testimonials?acf_format=standard&page=1&per_page=2`);
                 return res.data;
-            } catch (error) {
+            } catch (error: unknown) {
                 console.error('Failed to fetch testimonials:', error);
                 return [];
             }
@@ -29,13 +43,13 @@ const Testimonials = () => {
                         className='text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight font-manrope text-center lg:text-left'
                         style={{ fontStretch: '150%' }}
                     >
-                        DON'T TAKE OUR WORD FOR IT, HERE'S WHAT PEOPLE THINK OF US
+                        {"DON'T TAKE OUR WORD FOR IT, HERE'S WHAT PEOPLE THINK OF US"}
                     </h2>
                 </div>
 
                 {/* Testimonials Grid */}
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8'>
-                    {Array.isArray(testimonials) && testimonials.map((testimonial: any) => (
+                    {Array.isArray(testimonials) && testimonials.map((testimonial) => (
                         <div
                             key={testimonial.slug}
                             className='bg-white/40 rounded-2xl backdrop-blur-md p-6 lg:p-8 flex flex-col justify-between min-h-[300px] shadow-lg hover:shadow-xl transition-shadow duration-300'

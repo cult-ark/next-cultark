@@ -37,7 +37,7 @@ function ThanksContent() {
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
           <CheckCircle className="w-12 h-12 text-green-600" />
         </div>
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">You're all set!</h1>
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">{"You're all set!"}</h1>
         <p className="text-gray-500 text-lg mb-10">Check your inbox for the calendar invitation and meeting details.</p>
 
         <div className="space-y-4 mb-10">

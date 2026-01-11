@@ -48,8 +48,7 @@ const CareersPageClient = () => {
                     <ArrowDown size={50} className='hidden xl:block' />
                 </div>
                 <p className='font-light leading-none'>
-                    This isn't an instant reply kind of thing—it's our talent directory.
-                    But if you're someone we can't miss, we'll make sure we don't.
+                    {"This isn't an instant reply kind of thing—it's our talent directory. But if you're someone we can't miss, we'll make sure we don't."}
                 </p>
 
                 <form

@@ -21,7 +21,8 @@ const employees = [
 type Slot = {
     start: string;
     end?: string;
-    [key: string]: any;
+    manager?: string;
+    [key: string]: unknown;
 };
 
 type Props = {

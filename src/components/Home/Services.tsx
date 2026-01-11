@@ -41,9 +41,7 @@ const Services = () => {
                         The Magic Within the Cult
                     </h2>
                     <p className='text-16 lg:w-3/5 font-light'>
-                        We don't follow trends—we shape them. Every strategy, every campaign,
-                        and every creative piece we build is designed to leave an impact. If
-                        it doesn't drive results, we don't do it.
+                        {"We don't follow trends—we shape them. Every strategy, every campaign, and every creative piece we build is designed to leave an impact. If it doesn't drive results, we don't do it."}
                     </p>
 
                     <ServiceDesktop
