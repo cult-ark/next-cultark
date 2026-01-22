@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import StructuredData from "@/components/common/StructuredData";
 import MetaPixel from "@/components/common/MetaPixel";
 import GoogleAnalytics from "@/components/common/GoogleAnalytics";
+import LinkedInInsightTag from "@/components/common/LinkedInInsightTag";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -87,6 +88,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const linkedInPlacement = process.env.NEXT_PUBLIC_LINKEDIN_TAG_PLACEMENT ?? "body-bottom";
+  const renderLinkedInInHead = linkedInPlacement === "head";
+  const renderLinkedInInBodyTop = linkedInPlacement === "body-top";
+  const renderLinkedInInBodyBottom = !renderLinkedInInHead && !renderLinkedInInBodyTop;
+
   return (
     <html lang="en">
       <head>
@@ -100,11 +106,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//calendar.google.com" />
         <MetaPixel />
         <GoogleAnalytics />
+        {renderLinkedInInHead ? <LinkedInInsightTag /> : null}
       </head>
       <body
         className={`${archivo.variable} ${manrope.variable} antialiased font-archivo text-cultark-gray overflow-x-hidden`}
         suppressHydrationWarning
       >
+        {renderLinkedInInBodyTop ? <LinkedInInsightTag /> : null}
         <QueryProvider>
           <Navbar />
           <main className='font-archivo text-cultark-gray'>
@@ -112,6 +120,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </QueryProvider>
+        {renderLinkedInInBodyBottom ? <LinkedInInsightTag /> : null}
       </body>
     </html>
   );
