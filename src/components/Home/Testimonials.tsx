@@ -2,9 +2,8 @@
 
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { cleanApiResponse } from '@/utils/functions';
 const profile_pic = '/images/profile-pic.png';
-import axios from 'axios';
+import { axiosInstance } from '@/utils/axios-config';
 
 type WordPressTestimonial = {
     slug: string;
@@ -21,28 +20,26 @@ type WordPressTestimonial = {
 };
 
 const Testimonials = () => {
-    const { data: testimonials } = useQuery<WordPressTestimonial[]>({
+    const { data: testimonials, isLoading, error } = useQuery<WordPressTestimonial[]>({
         queryKey: ['testimonials'],
         queryFn: async () => {
             try {
-                const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
-                const res = await axios.get<WordPressTestimonial[]>(
-                    `${baseUrl}/wp-json/wp/v2/testimonials?acf_format=standard&page=1&per_page=2`,
-                    {
-                        transformResponse: [(data) => data]
-                    }
+                const res = await axiosInstance.get<WordPressTestimonial[]>(
+                    `/wp-json/wp/v2/testimonials?acf_format=standard&page=1&per_page=2`
                 );
-                const data = cleanApiResponse(res.data);
                 
-                // If the cleaned data is empty but res.data was not, verify if it's actually empty or parsing failed
-                // cleanApiResponse returns [] on failure, so checking length is enough
-                return data;
+                // We use cleanApiResponse globally, but check here just to be safe
+                if (res.data && Array.isArray(res.data)) {
+                    return res.data;
+                }
+                return [];
             } catch (error: unknown) {
                 console.error('Failed to fetch testimonials:', error);
                 return [];
             }
         },
-        initialData: [] // Provide empty array as initial data to prevent map error
+        // We do NOT want to use initialData: [] because it forces the query to resolve instantly as "success" with empty data,
+        // which prevents the "isLoading" state from working and immediately renders "No testimonials".
     });
 
     return (
@@ -60,7 +57,7 @@ const Testimonials = () => {
 
                 {/* Testimonials Grid */}
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8'>
-                    {Array.isArray(testimonials) && testimonials.map((testimonial) => (
+                    {Array.isArray(testimonials) && testimonials.length > 0 && testimonials.map((testimonial) => (
                         <div
                             key={testimonial.slug}
                             className='bg-white/40 rounded-2xl backdrop-blur-md p-6 lg:p-8 flex flex-col justify-between min-h-[300px] shadow-lg hover:shadow-xl transition-shadow duration-300'
@@ -110,11 +107,15 @@ const Testimonials = () => {
                 </div>
 
                 {/* Empty State */}
-                {(!testimonials || testimonials.length === 0) && (
+                {isLoading ? (
+                    <div className='text-center py-12'>
+                        <p className='text-gray-500'>Loading testimonials...</p>
+                    </div>
+                ) : (!testimonials || testimonials.length === 0) ? (
                     <div className='text-center py-12'>
                         <p className='text-gray-500'>No testimonials available at the moment.</p>
                     </div>
-                )}
+                ) : null}
             </div>
         </section>
     );

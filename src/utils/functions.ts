@@ -27,27 +27,50 @@ export function formatToTwoDigits(number: number) {
 }
 
 // Helper to handle malformed API responses (e.g. PHP warnings/injections mixed with JSON)
-export const cleanApiResponse = (data: any): any[] => {
-    if (Array.isArray(data)) return data;
+export const cleanApiResponse = (data: any): any => {
+    if (Array.isArray(data) || (typeof data === 'object' && data !== null)) return data;
 
     if (typeof data === 'string') {
-        const startIndex = data.indexOf('[{');
-        if (startIndex !== -1) {
-            try {
-                // Attempt to parse the JSON array part
-                // Find the last closing bracket to avoid trailing garbage
-                const endIndex = data.lastIndexOf(']');
-                if (endIndex > startIndex) {
-                    const potentialJson = data.substring(startIndex, endIndex + 1);
+        const trimmedData = data.trim();
+        
+        // Try finding valid array JSON
+        const endArr = trimmedData.lastIndexOf(']');
+        if (endArr !== -1) {
+            let searchIndex = 0;
+            while (true) {
+                const arrIdx = trimmedData.indexOf('[{', searchIndex);
+                if (arrIdx === -1 || arrIdx > endArr) break;
+                try {
+                    const potentialJson = trimmedData.substring(arrIdx, endArr + 1);
                     return JSON.parse(potentialJson);
+                } catch (e) {
+                    searchIndex = arrIdx + 1;
                 }
-            } catch (e) {
-                console.error('Failed to parse malformed API response:', e);
             }
+        }
+
+        // Try finding valid object JSON
+        const endObj = trimmedData.lastIndexOf('}');
+        if (endObj !== -1) {
+            let searchIndex = 0;
+            while (true) {
+                const objIdx = trimmedData.indexOf('{', searchIndex);
+                if (objIdx === -1 || objIdx > endObj) break;
+                try {
+                    const potentialJson = trimmedData.substring(objIdx, endObj + 1);
+                    return JSON.parse(potentialJson);
+                } catch (e) {
+                    searchIndex = objIdx + 1;
+                }
+            }
+        }
+        
+        try {
+            return JSON.parse(data);
+        } catch (e) {
+            console.error('Failed to parse malformed API response');
         }
     }
     
-    // If data is an object (not array), wrap it in array if it looks like a single item, 
-    // but here we expect lists mostly. If strictly not array, return empty.
     return [];
 };

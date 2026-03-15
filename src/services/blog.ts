@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from 'axios';
+import { axiosInstance } from '../utils/axios-config';
 import { BlogPost } from '../types/blog.type';
-import { cleanApiResponse } from '../utils/functions';
 
 // For static export, always use direct WordPress URL
 const getWordPressApiUrl = () => {
-    const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
-    return `${baseUrl}/wp-json/wp/v2/blog?acf_format=standard&_fields=id,title,slug,acf.summary,acf.content,acf.large_image,acf.thumbnail,acf.tag,featured_media,date`;
+    return `/wp-json/wp/v2/blog?acf_format=standard&_fields=id,title,slug,acf.summary,acf.content,acf.large_image,acf.thumbnail,acf.tag,featured_media,date`;
 };
 
 export const getBlogPosts = async (
@@ -15,21 +13,19 @@ export const getBlogPosts = async (
     end_date?: string
 ): Promise<BlogPost[]> => {
     try {
-        const res = await axios.get(
+        const res = await axiosInstance.get(
             getWordPressApiUrl() +
             (query && query !== undefined ? `&search=${query} ` : '') +
             (start_date && start_date !== undefined ? `&after=${start_date}` : '') +
             (end_date && end_date !== undefined ? `&before=${end_date}` : '')
         );
 
-        const data = cleanApiResponse(res.data);
-
-        if (!data || !Array.isArray(data)) {
+        if (!res.data || !Array.isArray(res.data)) {
             console.warn('Invalid blog posts response format');
             return [];
         }
 
-        const postsWithImages = data.map((post: any) => ({
+        const postsWithImages = res.data.map((post: any) => ({
             ...post,
             featured_image: null,
             thumbnail: post.acf?.thumbnail || null,
@@ -45,22 +41,21 @@ export const getBlogPosts = async (
 
 export const getBlogPost = async (slug: string): Promise<BlogPost | null> => {
     try {
-        const res = await axios.get(`${getWordPressApiUrl()}&slug=${slug}`);
-        const data = cleanApiResponse(res.data);
+        const res = await axiosInstance.get(`${getWordPressApiUrl()}&slug=${slug}`);
 
-        if (!data || !Array.isArray(data) || data.length === 0) {
+        if (!res.data || !Array.isArray(res.data) || res.data.length === 0) {
             console.warn(`Blog post not found for slug: ${slug}`);
             return null;
         }
 
-        const post = data[0];
+        const post = res.data[0];
 
         if (post.featured_media) {
             try {
                 const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
-                const mediaUrl = `${baseUrl}/wp-json/wp/v2/media/${post.featured_media}`;
+                const mediaUrl = `/wp-json/wp/v2/media/${post.featured_media}`;
 
-                const imgRes = await axios.get(mediaUrl);
+                const imgRes = await axiosInstance.get(mediaUrl);
                 return { ...post, featured_image: imgRes.data.source_url };
             } catch (imgError) {
                 console.warn('Error fetching featured image:', imgError);

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
+import { axiosInstance } from '../utils/axios-config';
 import Service from '../types/Service';
-import { extractListItems, cleanApiResponse } from '../utils/functions';
+import { extractListItems } from '../utils/functions';
 import rawItems from '../../data/itemz.json';
 
 // Type for service items
@@ -30,12 +31,11 @@ export const getServices = async (page_limit = 20) => {
     try {
         // For static export, always use direct WordPress URL
         const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
-        const apiUrl = `${baseUrl}/wp-json/wp/v2/services?acf_format=standard&_fields=${fields.join(',')}&per_page=${page_limit}&orderby=id&order=asc`;
+        const apiUrl = `/wp-json/wp/v2/services?acf_format=standard&_fields=${fields.join(',')}&per_page=${page_limit}&orderby=id&order=asc`;
 
-        const res = await axios(apiUrl);
-        const data = cleanApiResponse(res.data);
+        const res = await axiosInstance.get(apiUrl);
 
-        return data.map((service: Service) => ({
+        return res.data.map((service: Service) => ({
             ...service,
             acf: {
                 ...service.acf,
@@ -52,15 +52,14 @@ export const getServiceBySlug = async (slug: string) => {
     try {
         // For static export, always use direct WordPress URL
         const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
-        const apiUrl = `${baseUrl}/wp-json/wp/v2/services?slug=${slug}&acf_format=standard&_fields=${fields.join(',')}`;
+        const apiUrl = `/wp-json/wp/v2/services?slug=${slug}&acf_format=standard&_fields=${fields.join(',')}`;
 
-        const res = await axios(apiUrl);
-        const data = cleanApiResponse(res.data);
+        const res = await axiosInstance.get(apiUrl);
 
-        if (data.length === 0) {
+        if (res.data.length === 0) {
             throw new AxiosError('Service not found');
         }
-        return data.map((service: Service) => ({
+        return res.data.map((service: Service) => ({
             ...service,
             acf: {
                 ...service.acf,
