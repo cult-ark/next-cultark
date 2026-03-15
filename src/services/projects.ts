@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ProjectType } from '../types/project.type';
+import { cleanApiResponse } from '../utils/functions';
 
 const projectFormat =
     'acf_format=standard&_fields=id,title,slug,acf.summary,acf.content,acf.large_image,acf.thumbnail,acf.tag';
@@ -14,12 +15,14 @@ export const fetchProjects = async (query?: string): Promise<ProjectType[]> => {
         const url = getProjectsApiUrl() + (query ? `&search=${query}` : '');
         const res = await axios(url);
 
-        if (!res.data || !Array.isArray(res.data)) {
+        const data = cleanApiResponse(res.data);
+
+        if (!data || !Array.isArray(data)) {
             console.warn('Invalid projects response format');
             return [];
         }
 
-        return res.data as ProjectType[];
+        return data as ProjectType[];
     } catch (error) {
         console.error('Error fetching projects:', error);
         return [];
@@ -35,13 +38,14 @@ export const fetchProject = async (slug?: string): Promise<ProjectType | null> =
 
         const url = getProjectsApiUrl() + `&slug=${slug}`;
         const res = await axios(url);
+        const data = cleanApiResponse(res.data);
 
-        if (!res.data || !Array.isArray(res.data) || res.data.length === 0) {
+        if (!data || !Array.isArray(data) || data.length === 0) {
             console.warn(`Project not found for slug: ${slug}`);
             return null;
         }
 
-        return res.data[0];
+        return data[0];
     } catch (error) {
         console.error('Error fetching project:', error);
         return null;

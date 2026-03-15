@@ -2,6 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { cleanApiResponse } from '@/utils/functions';
 const profile_pic = '/images/profile-pic.png';
 import axios from 'axios';
 
@@ -24,8 +25,18 @@ const Testimonials = () => {
         queryKey: ['testimonials'],
         queryFn: async () => {
             try {
-                const res = await axios.get<WordPressTestimonial[]>(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wp/v2/testimonials?acf_format=standard&page=1&per_page=2`);
-                return res.data;
+                const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backup.cultark.net';
+                const res = await axios.get<WordPressTestimonial[]>(
+                    `${baseUrl}/wp-json/wp/v2/testimonials?acf_format=standard&page=1&per_page=2`,
+                    {
+                        transformResponse: [(data) => data]
+                    }
+                );
+                const data = cleanApiResponse(res.data);
+                
+                // If the cleaned data is empty but res.data was not, verify if it's actually empty or parsing failed
+                // cleanApiResponse returns [] on failure, so checking length is enough
+                return data;
             } catch (error: unknown) {
                 console.error('Failed to fetch testimonials:', error);
                 return [];

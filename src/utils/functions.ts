@@ -25,3 +25,29 @@ export const extractListItems = (html: string): string[] => {
 export function formatToTwoDigits(number: number) {
     return number < 10 ? `0${number}` : `${number}`;
 }
+
+// Helper to handle malformed API responses (e.g. PHP warnings/injections mixed with JSON)
+export const cleanApiResponse = (data: any): any[] => {
+    if (Array.isArray(data)) return data;
+
+    if (typeof data === 'string') {
+        const startIndex = data.indexOf('[{');
+        if (startIndex !== -1) {
+            try {
+                // Attempt to parse the JSON array part
+                // Find the last closing bracket to avoid trailing garbage
+                const endIndex = data.lastIndexOf(']');
+                if (endIndex > startIndex) {
+                    const potentialJson = data.substring(startIndex, endIndex + 1);
+                    return JSON.parse(potentialJson);
+                }
+            } catch (e) {
+                console.error('Failed to parse malformed API response:', e);
+            }
+        }
+    }
+    
+    // If data is an object (not array), wrap it in array if it looks like a single item, 
+    // but here we expect lists mostly. If strictly not array, return empty.
+    return [];
+};

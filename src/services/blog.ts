@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { BlogPost } from '../types/blog.type';
+import { cleanApiResponse } from '../utils/functions';
 
 // For static export, always use direct WordPress URL
 const getWordPressApiUrl = () => {
@@ -21,12 +22,14 @@ export const getBlogPosts = async (
             (end_date && end_date !== undefined ? `&before=${end_date}` : '')
         );
 
-        if (!res.data || !Array.isArray(res.data)) {
+        const data = cleanApiResponse(res.data);
+
+        if (!data || !Array.isArray(data)) {
             console.warn('Invalid blog posts response format');
             return [];
         }
 
-        const postsWithImages = res.data.map((post: any) => ({
+        const postsWithImages = data.map((post: any) => ({
             ...post,
             featured_image: null,
             thumbnail: post.acf?.thumbnail || null,
@@ -43,13 +46,14 @@ export const getBlogPosts = async (
 export const getBlogPost = async (slug: string): Promise<BlogPost | null> => {
     try {
         const res = await axios.get(`${getWordPressApiUrl()}&slug=${slug}`);
+        const data = cleanApiResponse(res.data);
 
-        if (!res.data || !Array.isArray(res.data) || res.data.length === 0) {
+        if (!data || !Array.isArray(data) || data.length === 0) {
             console.warn(`Blog post not found for slug: ${slug}`);
             return null;
         }
 
-        const post = res.data[0];
+        const post = data[0];
 
         if (post.featured_media) {
             try {

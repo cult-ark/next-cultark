@@ -12,10 +12,10 @@ import 'react-day-picker/dist/style.css';
 const API_URL = 'https://calendar.cultark.net';
 
 const employees = [
-    { name: 'Farah Nabil', email: 'farah.nabil@cultark.com', role: 'Senior Account Manager' },
-    { name: 'May Omar', email: 'may.omar@cultark.com', role: 'Senior Account Manager' },
     { name: 'Amira Kadry', email: 'amira.kadry@cultark.com', role: 'Accounts Director' },
     { name: 'Zeina Khaled', email: 'zeina.khaled@cultark.com', role: 'Senior Account Manager' },
+    { name: 'Farah Nabil', email: 'farah.nabil@cultark.com', role: 'Senior Account Manager' }
+
 ];
 
 type Slot = {

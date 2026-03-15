@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosError } from 'axios';
 import Service from '../types/Service';
-import { extractListItems } from '../utils/functions';
+import { extractListItems, cleanApiResponse } from '../utils/functions';
 import rawItems from '../../data/itemz.json';
 
 // Type for service items
@@ -25,28 +25,6 @@ const fields = [
     'acf.order',
     'acf.description',
 ];
-
-// Helper to handle malformed API responses (e.g. PHP warnings/injections mixed with JSON)
-const cleanApiResponse = (data: any): any[] => {
-    if (Array.isArray(data)) return data;
-
-    if (typeof data === 'string') {
-        const startIndex = data.indexOf('[{');
-        if (startIndex !== -1) {
-            try {
-                // Attempt to parse the JSON array part
-                const potentialJson = data.substring(startIndex);
-                return JSON.parse(potentialJson);
-            } catch (e) {
-                console.error('Failed to parse malformed API response:', e);
-            }
-        }
-    }
-    
-    // If data is an object (not array), wrap it in array if it looks like a single item, 
-    // but here we expect lists mostly. If strictly not array, return empty.
-    return [];
-};
 
 export const getServices = async (page_limit = 20) => {
     try {
