@@ -25,6 +25,29 @@ const fields = [
     'acf.order',
     'acf.description',
 ];
+
+// Helper to handle malformed API responses (e.g. PHP warnings/injections mixed with JSON)
+const cleanApiResponse = (data: any): any[] => {
+    if (Array.isArray(data)) return data;
+
+    if (typeof data === 'string') {
+        const startIndex = data.indexOf('[{');
+        if (startIndex !== -1) {
+            try {
+                // Attempt to parse the JSON array part
+                const potentialJson = data.substring(startIndex);
+                return JSON.parse(potentialJson);
+            } catch (e) {
+                console.error('Failed to parse malformed API response:', e);
+            }
+        }
+    }
+    
+    // If data is an object (not array), wrap it in array if it looks like a single item, 
+    // but here we expect lists mostly. If strictly not array, return empty.
+    return [];
+};
+
 export const getServices = async (page_limit = 20) => {
     try {
         // For static export, always use direct WordPress URL
@@ -32,7 +55,9 @@ export const getServices = async (page_limit = 20) => {
         const apiUrl = `${baseUrl}/wp-json/wp/v2/services?acf_format=standard&_fields=${fields.join(',')}&per_page=${page_limit}&orderby=id&order=asc`;
 
         const res = await axios(apiUrl);
-        return res.data.map((service: Service) => ({
+        const data = cleanApiResponse(res.data);
+
+        return data.map((service: Service) => ({
             ...service,
             acf: {
                 ...service.acf,
@@ -52,10 +77,12 @@ export const getServiceBySlug = async (slug: string) => {
         const apiUrl = `${baseUrl}/wp-json/wp/v2/services?slug=${slug}&acf_format=standard&_fields=${fields.join(',')}`;
 
         const res = await axios(apiUrl);
-        if (res.data.length === 0) {
+        const data = cleanApiResponse(res.data);
+
+        if (data.length === 0) {
             throw new AxiosError('Service not found');
         }
-        return res.data.map((service: Service) => ({
+        return data.map((service: Service) => ({
             ...service,
             acf: {
                 ...service.acf,
